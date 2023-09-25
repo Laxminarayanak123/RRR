@@ -1,0 +1,69 @@
+<style>
+    .foot{
+        color: aliceblue;
+        font-size: 20px;
+    }
+    #footDiv{
+     width: 48px;
+     height: 48px;
+     display: flex;
+     justify-content: center;
+     align-items: center;   
+    }
+    @media(min-width:601px) {
+		footer{
+			display: none;
+		}
+	}
+</style>
+
+<%if (locals.user){%>
+
+    
+<footer class="shareStyles"  id="HotelFooterStyles" style="border-top: 2px solid rgb(50,50,50); border-top-left-radius: 10px; border-top-right-radius: 10px;" >
+
+
+    <a style="text-decoration: none;" href="/">
+        <div id="footDiv">
+            <i class="fa-solid fa-house foot"></i>
+        </div>
+    </a>
+    <a style="cursor: pointer;" id="open-popup5-footer" title="Users"  >
+        <div id="footDiv" >
+            <i class="fa-solid fa-users foot"></i>
+        </div>
+   </a>
+   <a style="cursor: pointer;"  id="open-popup6-footer"  title="Hotels"  >
+
+       <div id="footDiv">
+           <i class="fa-solid fa-bell-concierge foot"></i>
+       </div>
+   </a>
+   <a  style="cursor: pointer; text-decoration: none;"  href="/developer"  title="Developers"  >
+        <div id="footDiv">
+            <i class="fa-solid fa-microchip foot"></i>
+        </div>
+    </a>
+    <div id="footDiv">
+        <a   href="/<%=typeOfUser%>/profile/<%= locals.user._id%>/">
+            <img id="ProfileInHeader" src="<%=locals.user.avatar%>" alt="" width="20" height="20" style=" border-radius: 50%; ">
+        </a>
+    </div>
+    <div id="footDiv">
+        <div class="dropdown">
+            <a style="cursor: pointer;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fa-solid fa-bars foot"></i>
+            </a>
+            <div class="dropdown-menu" style="background-color: rgb(10,10,10);" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item open-popup7"  href="#" style="color: aliceblue;"> <i class="fa-solid fa-screwdriver-wrench" style="margin-right: 10px;"></i>    Feature/Bug</a>
+              <hr style="background-color: rgb(136, 136, 136); color: rgb(172, 172, 172);">
+              <a class="dropdown-item" href="/<%=typeOfUser%>/signOut" style="color: aliceblue;"><i class="fa-solid fa-power-off" style="margin-right: 10px;"></i>    Logout</a>
+            </div>
+          </div>
+    </div>
+</footer>
+<%}%>
+
+
+
+<script src="/assets/js/footer.js"></script>

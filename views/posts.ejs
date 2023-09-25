@@ -1,0 +1,327 @@
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"> -->
+<link rel="stylesheet" href="/assets/css/posts.css">
+
+<%
+function upVote(data){
+    
+    let bools = false;
+
+    
+    data.map(upvote => {
+        if(upvote.user.id == locals.user.id){
+            
+                bools =  upvote.upVoted;
+                return bools
+            }
+        });
+       return bools;
+    }
+%>
+
+<!-- route information ,whether the post is from the user or hotel -->
+<% if(post.UserOrHotel=="User"){
+    var postUserType = "User";
+}
+else{
+    var postUserType = "Hotel";
+}%>
+
+
+
+<li class="postItem" id="post-<%=post._id%>">
+<style>
+    @media screen and (min-width:990px) {
+        .postCard{
+            width: 455px;
+        }
+    }
+    @media screen and (max-width:990px) {
+        .postCard{
+            width: 390px;
+        }
+    }
+    @media screen and (max-width:840px) {
+        .postCard{
+
+            width:420px;
+        }
+    }
+    @media screen and (max-width:600px) {
+        .postCard{
+            width: 420px;
+            margin-left: -20px;
+        }
+    }
+    @media screen and (max-width:480px) {
+        .postCard{
+            width: 380px;
+        }
+    }
+    @media screen and (max-width:440px) {
+        .postCard{
+            width: 350px;
+        }
+    }
+    @media screen and (max-width:400px) {
+        .postCard{
+            width: 310px;
+        }
+    }
+    @media screen and (max-width:350px) {
+        .postCard{
+            width: 285px;
+            margin-left: -30px;
+        }
+    }
+    @media screen and (max-width:320px) {
+        .postCard{
+            width: 270px;
+        }
+    }
+
+</style>
+
+<div class="container mt-5 mb-5" >
+    <div class="row d-flex  ">
+        <div class="col-md-6">
+            <div class="card postCard"  >
+                <div class="d-flex justify-content-between p-2 px-3" style="border-bottom: 1px solid black;" >
+                    <%
+                     var profilepic
+                        if(post.user.avatar){
+                             profilepic =  post.user.avatar;
+                        }
+                        else{
+                            profilepic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                        }
+                    %>
+                    
+                    <div  class="d-flex flex-row align-items-center nameImage" > <img src="<%=profilepic%>" alt="" width="32" height="32" class="rounded-circle" onclick="location.href='/<%=postUserType%>/profile/<%=post.user.id%>/'">
+                        <div class="d-flex flex-column ml-2"> <a class="nameInPost" href="/<%=postUserType%>/profile/<%=post.user.id%>/"><b> <span class="font-weight-bold " ><%= post.user.name %></span> </b> </a> 
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                        <!-- <div class="btn-group dropleft">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Dropleft
+                            </button>
+                            <div class="dropdown-menu">
+                            </div>
+                        </div> -->
+
+                    <div class="dropleft"  style="position: absolute; right: 15px; top: 15px;">
+                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; background-color: transparent; ">
+                            <i style="color: #fff;" class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <div class="dropdown-menu" style="background-color: rgb(18,18,18);">
+                           
+                            <div class="dropdown-item">
+                                    <!-- <p>share</p> -->
+                                    <button onclick="copyText(value)" value="<%=post.id%>"  style="border: none; background-color: transparent;  color: rgb(40, 90, 175); display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                        <div style="font-family: cursive;">
+                                            Copy Link
+                                        </div>
+                                        <!-- <div style="display: none;">
+                                            <p id="myLink"> venom_likith@gmail.com</p>
+                                        </div> -->
+                                        <div>
+                                            <i style="font-size: 18px;" class="fas fa-link"></i>
+                                        </div>
+                                    </button>
+                            </div>
+                            <hr>
+                            <div class="dropdown-item">
+                                <form action="/posts/download/<%=post.id%>" method="POST" style="margin-bottom: 0;">
+
+                                    <button  type="submit" style="border: none; background-color: transparent;  color: green; display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                        <div style="font-family: cursive;">
+                                            Download
+                                        </div>
+                                        <div>
+                                            <i style="font-size: 18px;" class="fas fa-download"></i>
+                                        </div>
+                                    </button>
+                                </form>
+                            </div>
+                            <hr>
+                            <%  if(locals.user.id == post.user.id || locals.user.isAdmin){%>
+                                <div class="dropdown-item">
+                                    <form action="/posts/delete/<%=post.user.id%>/<%=post.id%>/?type=<%=postUserType%>" method="POST" style="margin-bottom: 0;">
+    
+                                        <button  type="submit" style="border: none; background-color: transparent;  color: rgb(175, 40, 40); display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                            <div style="font-family: cursive;">
+                                                Delete
+                                            </div>
+                                            <div>
+                                                <i style="font-size: 18px; font-weight: 100;" class="fas fa-trash-alt"></i>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                            <%}%>
+                        </div>
+
+                    </div>
+
+                
+                </div> 
+                    <div class="upperForUserPage">
+                    <%if(post.UserOrHotel == "User" && (post.menuModel != null || post.hotelName!= null)){%>
+                    <div class="upperArea ">
+                            <span>
+                                <b>
+                                    <%=post.user.name%> 
+                                </b> 
+                            
+                                shared their experience about
+                                <% if(post.menuModel != null){%>
+
+                                    <b class="highlighter">
+                                        <%=post.menuModel.name%> 
+                                    </b>
+                                    
+                                    they had at
+                            <% } %> 
+                                <b class="highlighter" style="cursor: pointer;" onclick="location.href='/hotel/profile/<%=post.hotelName.id%>'">
+                                    <%= post.hotelName.name%>
+                                </b>
+                                
+                            </span>
+                        </div>
+                        <%}%>
+                        </div>
+
+                <img  src="<%= post.picturePath %>"  class="img-fluid  imgInPost " id="userProfileImgSizing">
+                
+                <div class="p-2">
+                    <p class="text-justify caption"><%= post.content%></p>
+                    <div class="d-flex align-items-center" style="justify-content: space-between;">
+                        <div style="display: flex; ">
+                            <form action="/upVote/<%=post.id%>/?type=Post&type1=<%=typeOfUser%>" method="post" id = "postUpVoteForm-<%=post._id%>">
+                               <div class="d-flex flex-row  d-flex align-items-center" id="postContainer-<%=post._id%>">
+                                   <%if(upVote(post.upVotes) == true){%>
+                                       <button style="border: none; background-color: transparent; color: red;"><i  class="fa-regular fa-circle-up"></i></button>
+                                   <%}else{%>
+                                       <button style="border: none; background-color: transparent; color:white;"><i class="fa-regular fa-circle-up"></i></button>
+                                   <%}%>
+                                   <span class="likesCount">
+                                       <%= post.upVotesCount%>
+                                   </span>
+   
+                                   
+                               </div>
+                           </form>
+                           <div style="margin-left: 20px; margin-top: 4px; ">
+                               <a  data-toggle="collapse" href="#collapseExample-<%=post.id%>"  aria-expanded="false" aria-controls="collapseExample">
+                                   <i style="color: #fff;" class="fa-solid fa-comment"></i>
+                               </a>
+                           </div>
+                        </div>
+
+                        <!-- muted-color -->
+                        <div class="d-flex flex-row" style="color: rgb(30, 42, 62);margin-top: -15px; "> <span id="ajaxCommentsCount-<%=post._id%>" class="commentsCount"><%=post.comments.length%> comments</span> </div>
+                    </div>
+                    <!-- <div class="comment-input"> <input type="text" class="form-control">
+                        <div class="fonts"> <i class="fa fa-camera"></i> </div>
+                    </div> -->
+                    
+                    <div class="collapse" id="collapseExample-<%=post.id%>" >
+                        <div class="card card-body commentsField">
+                            <div class="comment-input">
+
+                        <form  id="commentForm-<%=post._id%>" action="/posts/comment/?&type=<%=typeOfUser%>"  method="post" class="commentFormClass">
+            
+                            <div style="display: flex; justify-content: center;">
+                                <div style="padding-top: 20px;">
+                                    <input  style="width: 70%; height: 30px;" class="form-control " type="text" name="content" id="commentInput-<%=post._id%>" placeholder="comment" required>
+                                </div>
+                                <div style="display: flex; cursor: pointer; margin-top: 26px; ">
+                                    <button style="border: none; background-color: transparent;" type="submit" id="submitComment">
+                                        <i style="color: #fff; cursor: pointer; " class="fa-solid fa-paper-plane"></i>
+                                    </button>
+                                    <!-- <input  type="submit" id="submitComment">
+                                    <label  for="submitComment"><i style="color: #fff; cursor: pointer; " class="fa-solid fa-paper-plane"></i></label> -->
+                                </div>
+                            </div>
+                            <input type="hidden" name="post_id" value="<%=post.id%>">
+            
+            
+                        </form>
+            
+                        <script>
+                            new commentDOMClass(`<%=post._id%>`);
+                            new upVoteClass("post","<%=post._id%>");
+                        </script>
+            
+                         
+                        
+            
+                    </div>
+
+                    <hr>
+                    <div class="comments  venomCommentContainer">
+
+                        <ul style="list-style-type: none; padding-left: 0px;" id="commentUL-<%=post._id%>" class="commentULClass">
+                            <% for(comment of post.comments.reverse()){%>
+                                <%-include('comments')%>
+                            <%}%>
+        
+                        </ul> 
+                        <!-- <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/9AZ2QX1.jpg" width="40" class="rounded-image">
+                            <div class="d-flex flex-column ml-2"> <span class="name">Daniel Frozer</span> <small class="comment-text">I like this alot! thanks alot</small>
+                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>18 mins</small> </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="d-flex flex-row mb-2"> <img src="https://i.imgur.com/1YrCKa1.jpg" width="40" class="rounded-image">
+                            <div class="d-flex flex-column ml-2"> <span class="name">Elizabeth goodmen</span> <small class="comment-text">Thanks for sharing!</small>
+                                <div class="d-flex flex-row align-items-center status"> <small>Like</small> <small>Reply</small> <small>Translate</small> <small>8 mins</small> </div>
+                            </div>
+                        </div> -->
+                       
+                    </div>
+                        
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</li>
+
+
+<script>
+    function copyText(value) {
+      var text ="http://localhost:8000/share/"+value;
+      
+      // Create a temporary textarea element
+      var tempTextArea = document.createElement("textarea");
+      tempTextArea.value = text;
+      document.body.appendChild(tempTextArea);
+      
+      // Copy the text from the textarea
+      tempTextArea.select();
+      document.execCommand("copy");
+      
+      // Remove the temporary textarea
+      document.body.removeChild(tempTextArea);
+
+
+
+     //  creating flash now
+        var flashMessage = $('<div>', {
+            class: 'flash flash-success fade'
+        }).appendTo('body');
+
+        $('<p>').text("Link Copied").appendTo(flashMessage);
+
+        setTimeout(function() {
+            flashMessage.fadeOut(function() {
+            $(this).remove();
+            });
+        }, 4000); 
+    }
+  </script>

@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="/assets/css/signIN.css">
+<link rel="stylesheet" href="/assets/css/hotelSiginIn.css">
+
+<% if (message != '') { %>
+  <div class="flash <%= message[0].type %> fade">
+      <p>
+          <%= message[0].text %>
+      </p>
+  </div>
+<% } %>
+<div class="signInBodyWrap">
+
+      <div class="video-container">
+            <video autoplay muted loop id="bg-video">
+                  <source src="/uploads/Intro masakan_mukbang free no copyright _ Intro cook mukbang free no copyright (online-video-cutter.com).mp4" type="video/mp4">
+            </video>
+      </div>
+
+      <div id="containerForForm">
+            <div id="imgInForm">
+                <img src="https://images.unsplash.com/photo-1574936145840-28808d77a0b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzB8fHJlc3RhdXJhbnR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+                          alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;width: 100%;
+                          height: auto;
+                          min-height: 100%;" />
+            </div>
+            <div id="originalFormContainer">
+                <form action="/hotel/create-session" method="POST" id="originalForm">
+                    <p style="margin-bottom: 50px; color: rgb(255, 115, 0); font-family: cursive; font-size: 30px; border-bottom: 2px solid #ff7e05; padding-bottom: 2px;"><span class="first-letter">H</span>otel <span class="first-letter">     P</span>ortal </p>
+                    <!-- <h3 style="letter-spacing: 1px; text-align: center; color:aliceblue; font-weight: 400; font-family: 'Times New Roman', Times, serif; font-size: 22px; margin-bottom: 50px;">Sign into your account</h3> -->
+                    <div >
+                        <!-- <label for="email">Email address</label> -->
+                        <!-- <br> -->
+                        <input type="email" name="email" placeholder="Email" required id="email"  autocapitalize="off" autocomplete="off" autocorrect="off">    
+                    </div>
+
+                    <div style="position: relative;">
+                        <!-- <label for="password">Password &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;</label> -->
+                        <!-- <br> -->
+                        <input type="password" name="password"  placeholder="Password"  required id="password"  autocomplete="off">
+                        <i class="toggle-password fas fa-eye-slash fa-xs"></i>
+
+                    </div>
+    
+                      <div id="buttonsLogin">
+
+                        <button class="btn" type="submit" >Login</button>
+
+                        <button  class="btn" onclick="location.href='/hotel/signUp'" type="button" >Sign Up</button>
+                      </div>
+
+                      <div class="container">
+                        <div class="line"></div>
+                        <div class="or">OR</div>
+                        <div class="line"></div>
+                      </div>
+                      
+                      <div style="margin-top: 30px;">
+                        <button class="buttonG" type="button" onclick="location.href='/auth/hotel/google'">
+                            <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">
+                            <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"></path>
+                            <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>
+                            <path fill="#FBBC05" d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782"></path>
+                            <path fill="#EB4335" d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251"></path>
+                          </svg>
+                            Continue with Google
+                          </button>
+                      </div>
+                      <div style="text-align: center; margin-top: 20px;">
+                        <span style="color:aliceblue"> <span style="color: red; font-size: 20px;vertical-align: middle;">*</span> check mails for approval</span>
+                      </div>
+                      <!-- <div id="downResto">
+                        <div>
+                            <p style="color: aliceblue; margin-top: 15px;">Do you own a restaurant ?</p>
+                        </div>
+                        <div>
+                            <button class="btn" onclick="location.href='/hotel/signIn'" type="button">
+                                Resto
+                            </button>
+                        </div>
+                      </div> -->
+                </form>
+            </div>
+      </div>
+
+</div>
+
+<script>
+  var passwordInput = document.getElementById("password");
+  var togglePasswordIcon = document.querySelector(".toggle-password");
+
+  togglePasswordIcon.addEventListener("click", function() {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      togglePasswordIcon.classList.remove("fa-eye-slash");
+      togglePasswordIcon.classList.add("fa-eye");
+    } else {
+      passwordInput.type = "password";
+      togglePasswordIcon.classList.remove("fa-eye");
+      togglePasswordIcon.classList.add("fa-eye-slash");
+    }
+  });
+
+</script>
+
+ 
+
+
+ 
+
+
+ 
+

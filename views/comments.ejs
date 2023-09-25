@@ -1,0 +1,122 @@
+<li  id="commentArea-<%=comment.id%>"  class="comment commentList">
+
+    <%
+    function upVote(data){
+
+        let bools = false;
+        data.findIndex(upvote => {
+
+            if(upvote.user== locals.user.id){
+
+                <!-- console.log("TRUE DATA",upvote.upVoted); -->
+            
+                bools =  upvote.upVoted;
+            }
+
+        });
+
+    return bools;
+
+    }
+
+
+    if(comment.UserOrHotel=="User"){
+        var commentUserType = "User";
+    }
+    else{
+        var commentUserType = "Hotel";
+    } 
+
+
+
+
+    %>
+
+    <%
+                 var profilepic
+                    if(comment.user.avatar){
+                         profilepic =  comment.user.avatar;
+                         <!-- console.log(profilepic) -->
+                    }
+                    else{
+                        profilepic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+                    }
+                %>
+
+<div id="commentsDiv" >
+    <div style="display: flex; justify-content: space-between;">
+
+        <div class="nameImage">
+            <img src="<%=profilepic%>" width="30" height="30px" class="rounded-circle" onclick="location.href='/<%=commentUserType%>/profile/<%=comment.user.id%>'">
+            <a class="nameInPost" href="<%=commentUserType%>/profile/<%=comment.user.id%>"> <b> <span class="name"><%=comment.user.name%></span> </b> </a>
+        </div>
+        <%if(locals.user.id == comment.user.id || locals.user.isAdmin) { %>
+        <div>
+    
+                <!-- <b> -->
+                <div class="dropleft">
+                    <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; background-color: transparent; ">
+                        <i style="color: #fff;" class="fas fa-ellipsis-h"></i>
+                    </button>
+                    <div class="dropdown-menu" style="background-color: rgb(18,18,18);">
+                        <div class="dropdown-item">
+                            <form action="/posts/comment/delete/" method="post" id="commentDelete-<%=comment.id%>"  style="margin-bottom: 0;">
+    
+                                <input type="hidden" value="<%=comment.id%>" name="cID">
+            
+                                <input type="hidden" value="<%=post.id%>" name="pID">
+            
+                                <button style="border: none; background-color: transparent;  color: rgb(175, 40, 40); display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                                    <div>
+                                        Remove
+                                    </div>
+                                    <div>
+                                        <!-- <i style="font-size: 18px;" class="fa-solid fa-delete-left"></i> -->
+                                        <i style="font-size: 18px; font-weight: 100;" class="fas fa-trash-alt"></i>
+                                    </div>
+                                </button>
+            
+                            </form>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- </b> -->
+    
+        </div>
+        <%}%>
+    </div>
+    <div class="d-flex flex-column ml-2" style="overflow: hidden;"> 
+
+        
+
+         <small   class="comment-text caption"><%=comment.content%></small>
+        <div style="margin-top: 10px;">
+             <form action="/upVote/<%=comment.id%>/?type=Comment&type1=<%=typeOfUser%>" method="POST" id="commentUpVoteForm-<%=comment._id%>">
+        
+                <div id="commentContainer-<%=comment._id%>">
+    
+                    <%if(upVote(comment.upVotes) == true){%>
+                        <button style="border: none; background-color: transparent; color: red; "><i class="fa-regular fa-circle-up"></i></button>
+                    <%}else{%>
+                        <button style="border: none; background-color: transparent; color:white;"><i class="fa-regular fa-circle-up"></i></button>
+                    <%}%>
+                    <span class="likesCount">
+                        <%= comment.upVotesCount%>
+                    </span>
+    
+                </div>
+                
+            </form>
+        </div>
+
+
+    </div>
+</div>
+
+
+</li>
+<script>
+new upVoteClass("comment","<%=comment._id%>");
+new deleteComment("<%=comment.id%>")
+</script>

@@ -1,0 +1,99 @@
+<link rel="stylesheet" href="/assets/css/buttons.css">
+<link rel="stylesheet" href="/assets/css/header.css">
+<header  id="HotelHeaderStyles" style="z-index:2000; position: fixed; width: 100%; border-bottom: 2px solid rgb(50,50,50); border-bottom-right-radius: 10px; border-bottom-left-radius: 10px ;">
+
+    <div  style="margin-top: 5px;">
+        <a href="/">
+            
+            <img  src="/uploads/logo.png" alt="" id="HeaderLogo" class="HotelHeaderLogo">
+
+        </a>
+
+         
+
+    </div>
+ 
+
+    
+
+
+    <%if (locals.user){%>
+
+
+        
+
+        <div style="display: flex; ">
+
+            <%-include('search')%>
+
+            <div id="profHeader">
+                <a   href="/<%=typeOfUser%>/profile/<%= locals.user._id%>/">
+                    <img id="ProfileInHeader" src="<%=locals.user.avatar%>" alt="" width="32" height="32" style=" border-radius: 50%; ">
+                </a>
+            </div>
+                
+            <div id="signOutHeader">
+                <a  href="/<%=typeOfUser%>/signOut"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+            
+
+
+        </div>
+        
+        
+
+    <%}%>
+
+    
+
+
+ 
+
+
+</header>
+
+<%if (locals.user){%>
+
+<!-- for bug / feature report -->
+
+<div style="z-index: 999999;" id="popup-container7">
+    <div id="popup-form7">
+        <a  id="close-popup7">&times;</a> 
+        <div  class="container" style="margin-top: 20px; font-size: 13px;" >
+            <form action="/developer/suggest"  method="post" >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 20px; ">
+                    <p class="formText"  style="color: #ff913c; font-family: monospace;">Feauture / Bug</p>
+                </div>
+                <hr style="border: 1px solid aliceblue;">
+                <div >
+                    <label class="labels" style="color: aliceblue;">Feedback :</label>
+                    <textarea style="border-radius: 10px;" name="content" id="" cols="1" rows="2" required placeholder="   Ask for a feature / Report a Bug here"></textarea>                  
+                </div>
+                <div  style="margin-top: 40px; margin-bottom: 30px; ;">
+                    <label for="typeSelect" style="color: aliceblue;" >Select the type of feedback :</label>
+                    <select class="form-control" style="width: 80%" id="typeSelect" name="FeedBackType">
+                        <option  value="Feature" >Feature</option>
+                        <option value="Bug">Bug</option>
+                    </select>
+                </div>
+                <input type="text" value="<%=typeOfUser%>"  name = "userType" hidden>
+                <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                <div style="text-align: center;">
+                  <button type="submit" class="animated-button1">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      Submit
+                  </button>
+                </div>
+
+                <!-- <button type="submit">Submit</button> -->
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<%}%>

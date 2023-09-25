@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRR</title>
+    <link rel="icon" type="image/x-icon" href="/uploads/Free_Logo_Maker_-Create_your_own_logo_in_minutes_1-removebg-preview-1.ico">
+    <link rel="stylesheet" href="/assets/css/admin.css">
+</head>
+<body style="background-color: rgb(18,18,18);">
+    <div style="text-align: center; font-size: 30px; font-family: sans-serif; color: orange; font-style: italic;" >
+       <!-- - - - - R R R- - - - -->
+       <div  style="margin-top: 5px;">
+        <a href="/">
+            
+            <img width="200px" height="150px"  src="/uploads/logo.png" alt="" id="HeaderLogo" class="HotelHeaderLogo">
+
+        </a>
+
+         
+
+    </div>
+    </div>
+    <hr>
+    <div id="buttonArray" >
+        <div class="open-popup5" >
+            <button class="button">
+                Bug/Feature
+            </button>
+        </div>
+        <div class="open-popup6">
+            <button class="button">
+                Add District
+            </button>
+        </div>
+        <div  class="open-popup7">
+            <button class="button">
+                Approve Hotel
+            </button>
+        </div>
+        <div class="open-popup8">
+            <button class="button">
+                promotional Mail
+            </button>
+        </div>
+        <div class="open-popup9">
+            <button class="button">
+                Manage Hotels
+            </button>
+        </div>
+    </div>
+
+
+
+    <!-- bug features popup -->
+    <div style="z-index: 999999;" id="popup-container5">
+        <div id="popup-form5">
+            <a  id="close-popup5">&times;</a> 
+            <div  class="containerForUsers" style="margin-top: 15px; " >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                    <p class="formText someRandomClass"  style="color:rgb(156, 255, 80); font-family: monospace;">Bugs/Features </p>
+                </div>
+                <hr>
+                    <div class="user-container" style="overflow-y: scroll; height: 450px;">
+                        <% for (var item1 of bugData){ %>
+                            <div style="color: aliceblue; display: flex; flex-direction:column;">
+                                <p>
+                                    <%= item1 %>
+                                </p>
+                                <form action="/admin/delete_feedback/<%=item1.id%>" method="post" style="text-align: center;">
+                                    <button style="width: 100px; height: 40px; color:aliceblue; background-color: #ff1b32b5; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516);">Delete</button>
+                                </form>
+                            </div>
+                            <hr>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+    <!-- for add districts -->
+    <div style="z-index: 999999;" id="popup-container6">
+        <div id="popup-form6">
+            <a  id="close-popup6">&times;</a> 
+            <div  class="containerForUsers" style="margin-top: 15px; " >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                    <p class="formText someRandomClass"  style="color:rgb(156, 255, 80); font-family: monospace;">Add district form </p>
+                </div>
+                <hr>
+                    <form action="/admin/add_districts" method="post" style="text-align: center; margin-top: 150px;">
+                        <div style="display: flex; justify-content: center;">
+                            <label style="color: aliceblue; font-size: large; margin-right: 20px;" for="inp1">District:</label>
+                            <input type="text" name="name" id="inp1" maxlength="20" required>
+                        </div>
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    <!-- for approve hotels -->
+    <div style="z-index: 999999;" id="popup-container7">
+        <div id="popup-form7">
+            <a  id="close-popup7">&times;</a> 
+            <div  class="containerForUsers" style="margin-top: 15px; " >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                    <p class="formText someRandomClass"  style="color:rgb(156, 255, 80); font-family: monospace;">Approve Hotels </p>
+                </div>
+                <hr>
+                    <div class="user-container" style="overflow-y: scroll; height: 450px;">
+                        <% for (var item3 of toApproveHotels){ %>
+                            <div style="display: flex; justify-content: space-between; min-height: 100px; max-height: 150px;">
+                                <div style="color: aliceblue; display: flex; flex-direction:column; justify-content: space-evenly;">
+                                    <div>
+                                        <%= item3.name %>,
+                                    </div>
+                                    <div>
+                                        <%= item3.email %>,
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction:column; justify-content: space-evenly;">
+                                    <form action="/admin/approveHotel/<%=item3.id%>" method="post" style="text-align: center;">
+                                        <button style="width: 100px; height: 40px; color:aliceblue; background-color: #55ce65b5; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516) ; cursor: pointer;">Approve</button>
+                                    </form>
+                                    <form action="/admin/disapproveHotel/<%=item3.id%>" method="post" style="text-align: center;">
+                                        <button style="width: 100px; height: 40px; color:aliceblue; background-color: #ff1b32b5; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516); cursor: pointer;">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <hr>
+                        <%}%>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- for email promotion -->
+    <div style="z-index: 999999;" id="popup-container8">
+        <div id="popup-form8">
+            <a  id="close-popup8">&times;</a> 
+            <div  class="containerForUsers" style="margin-top: 15px; " >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                    <p class="formText someRandomClass"  style="color:rgb(156, 255, 80); font-family: monospace;">send mail </p>
+                </div>
+                <hr>
+                    <form action="/admin/promotionalSampleMail" method="post" style="text-align: center; margin-top: 150px;">
+                        <!-- <div style="display: flex; justify-content: center;">
+                            <label style="color: aliceblue; font-size: large; margin-right: 20px;" for="inp1">mail:</label>
+                           <textarea style="border-radius: 10px;" name="mail" id="inp1" cols="1" rows="5" required></textarea>
+
+                        </div> -->
+                        <button type="submit">submit sample email </button>
+                    </form>
+
+                    <form action="/admin/promotionalMail" method="post" style="text-align: center; margin-top: 150px;">
+                        <!-- <div style="display: flex; justify-content: center;">
+                            <label style="color: aliceblue; font-size: large; margin-right: 20px;" for="inp1">mail:</label>
+                           <textarea style="border-radius: 10px;" name="mail" id="inp1" cols="1" rows="5" required></textarea>
+
+                        </div> -->
+                        <button type="submit">submit</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+    <!-- for manage hotels -->
+    <div style="z-index: 999999;" id="popup-container9">
+        <div id="popup-form9">
+            <a  id="close-popup9">&times;</a> 
+            <div  class="containerForUsers" style="margin-top: 15px; " >
+                <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                    <p class="formText someRandomClass"  style="color:rgb(156, 255, 80); font-family: monospace;">Manage Hotels </p>
+                </div>
+                <hr>
+                    <div class="user-container" style="overflow-y: scroll; height: 450px;">
+                        <% for (var item4 of allHotels){ %>
+                            <div style="display: flex; justify-content: space-between; min-height: 100px; max-height: 150px;">
+                                <div style="color: aliceblue; display: flex; flex-direction:column; justify-content: space-evenly;">
+                                    <div>
+                                        <%= item4.name %>,
+                                    </div>
+                                    <div>
+                                        <%= item4.email %>,
+                                    </div>
+                                </div>
+                                    <% if(item4.isVisible){%>
+                                        <form action="/admin/manageHotel/<%=item4.id%>" method="get" style="text-align: center; align-self: center;">
+                                            <button style="width: 100px; height: 40px; color:aliceblue; background-color: #e00c0c; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516) ; cursor: pointer;">Make it invisible</button>
+                                        </form>
+                                    <%}else{%>
+                                        <form action="/admin/manageHotel/<%=item4.id%>" method="get" style="text-align: center; align-self: center;">
+                                            <button style="width: 100px; height: 40px; color:aliceblue; background-color: #55ce65b5; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516) ; cursor: pointer;">Make it Visible</button>
+                                        </form>        
+                                    <%}%>
+                                    <!-- <form action="/admin/manageHotel/<%=item4.id%>" method="post" style="text-align: center;">
+                                        <button style="width: 100px; height: 40px; color:aliceblue; background-color: #55ce65b5; align-self:center; border-radius: 10px;  border: 2px solid rgba(255, 255, 255, 0.516) ; cursor: pointer;">Approve</button>
+                                    </form> -->
+                                    
+                            </div>
+                            <hr>
+                        <%}%>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script src="/assets/js/admin.js"></script>
+</body>
+</html>

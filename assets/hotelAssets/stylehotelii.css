@@ -1,0 +1,115 @@
+ 
+.navbar{
+	width: 40rem;
+	height: 100%;
+	position: fixed;
+}
+.sidebar{
+	width: 8rem;
+	height: 100%;
+	position: fixed;
+	background-color: #eee;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.menu-icon{
+	background-color: rgba(0,0,0,0.8);
+	margin-top: 3rem;
+	width: 3rem;
+}
+.line{
+	width: 2.5rem;
+	height: .2rem;
+	background-color: #FFA07A;
+	margin-bottom: .6rem;
+	margin-left: .3rem;
+	
+}
+.line1,.line3{
+	margin-top: .3rem;
+	width: 1.7rem;
+	transition: width .3s;
+}
+.line2{
+
+	width: 2.5rem;
+	
+}
+
+.menu-icon:hover .line{
+	width: 2.5rem;
+}
+.social-media ul{
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	height: 25rem;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.social-links{
+	font-size: 2rem;
+}
+.year{
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+}
+.navigation{
+	margin-left:8rem;
+	position: fixed;
+	width: 40rem;
+	height: 100%;
+	background:linear-gradient(to top,rgba(34,32,41,.6),rgba(34,32,41,.4)),url(navbarcover.jpg) center no-repeat;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.heading-name{
+	font-family: 'josefin sans',sans-serif;
+	font-size:3rem;
+	font-weight: 300;
+	color:#FFA07A ;
+	
+	/*text-shadow: 2px 2px #E97824 ;*/
+	letter-spacing: .2rem;
+	text-align: center;
+	transition: text-shadow .5s;
+}
+.heading-name:hover{
+	text-shadow: -2px 2px #FFA07A;
+	/*text-decoration: line-through;*/
+}
+.form-search{
+	position: relative;
+	/*background-color: red;*/
+}
+.navigation-input{
+	width: 30rem;
+	padding: 1rem 2rem;
+	background-color: rgba(0,0,0,0.3);
+	font-family: 'josefin sans' ,sans serif;
+	letter-spacing: .2rem;
+	color: #FFA07A ;
+	outline: none;
+	border: .1rem solid #aaa;
+	border-radius: 10rem;
+	transition: background-color .3s;
+}
+.navigation-input:focus{
+	background-color: rgba(250,128,114,0.2);
+}
+.nav-button{
+	border:none;
+	background-color: transparent;
+	color:#FFA07A ;
+	font-size: 1.7rem;
+	position: absolute;
+	top: 0.80rem;
+	right: 1rem;
+	cursor: pointer;
+}

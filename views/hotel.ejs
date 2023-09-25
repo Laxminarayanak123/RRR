@@ -1,0 +1,885 @@
+
+
+
+<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-switch@3.3.4/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet"> -->
+ <!-- for hotel -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400;1,500&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap" rel="stylesheet">
+
+ <!-- <link rel="stylesheet" href="/assets/css/hotel.css"> -->
+<link rel="stylesheet" type="text/css" href="/assets/hotelAssets/stylehotel.css">
+<link rel="stylesheet" href="/assets/css/buttons.css">
+
+
+<% if (message != '') { %>
+    <div class="flash-hotel <%= message[0].type %> fade-hotel" style="font-size: 100%;">
+        <p style="font-size: 15px;">
+            <%= message[0].text %>
+        </p>
+    </div>
+<% } %>
+<% if (message != '') { %>
+    <div class="flash-hotel <%= message[0].type %> fade-hotel" style="font-size: 100%;">
+        <p style="font-size: 15px;">
+            <%= message[0].text %>
+        </p>
+    </div>
+<% } %>
+
+<!-- header style -->
+
+<header  style="z-index:2000; position: fixed; width: 100%; border-bottom: 2px solid rgb(50,50,50); border-bottom-right-radius: 10px; border-bottom-left-radius: 10px ;">
+
+    <div  style="margin-top: 5px;">
+        <a href="/">
+            
+            <img  src="/uploads/logo.png" alt="" id="HeaderLogo" class="HotelHeaderLogo">
+
+        </a>
+
+         
+
+    </div>
+ 
+
+    
+
+
+    <%if (locals.user){%>
+
+
+        
+
+        <div style="display: flex; ">
+
+            <%-include('searchForHotel')%>
+
+            <div id="profHeader">
+                <a   href="/<%=typeOfUser%>/profile/<%= locals.user._id%>/">
+                    <img id="ProfileInHeader" src="<%=locals.user.avatar%>" alt="" width="32" height="32" style=" border-radius: 50%; ">
+                </a>
+            </div>
+                
+            <div id="signOutHeader" >
+                <a  href="/<%=typeOfUser%>/signOut"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket hotelLogoutStyle"></i></a>
+            </div>
+            
+
+
+        </div>
+        
+        
+
+    <%}%>
+
+    
+
+
+ 
+
+
+</header>
+
+
+<!-- image for back in first tile -->
+<% if (HotelProfile.coverPic) {
+    var imageForBack1 = "/uploads/hotelProfile/imagesForBack/" + HotelProfile.coverPic;
+} else {
+    var imageForBack1 = "/uploads/hotelProfile/imagesForBack/imageForBack.jpg";
+}
+<!-- console.log(imageForBack1) -->
+ %>
+ 
+<div class="header1" style="background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('<%= imageForBack1 %>'); background-size: cover; background-position: center;">
+    
+    <!-- form for the cover photo -->
+
+    <div id="popup-container3"  style="z-index: 999999;">
+        <div id="popup-form3" >
+            <div id="form-toggle">
+                <button id="cover-form-button" class="active">cover photo</button>
+                <button id="color-form-button">Colors</button>
+            </div>
+            <hr style="color: #ae989a;">
+            <div id="cover-form">
+
+                <div style=" display: flex; flex-direction: column; margin-top: 40px;">
+                    <div style="text-align: center;">
+                        <form  action="/hotel/cover"  method="post" enctype="multipart/form-data">
+                            <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                    <label style="margin-bottom: 20px;"  class="formText" style="font-size: 12px; color: aliceblue;">Change cover photo</label>
+                                    <input type="file" name="cover" class="form-control" style="width: 90%; " placeholder="cover" value="" required>
+                            </div>
+                            <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                            <div style="text-align: center;">
+                                <button type="submit" class="animated-button7">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <br> -->
+                    <hr style="color: #ae989a;">
+                    <!-- <br> -->
+                    <div style="text-align: center;">
+                        <form action="/hotel/cover/remove" method="get">
+                            <div style="text-align: center; margin-bottom: 10px;" >
+                                <p class="formText" style="font-size: 12px; color: aliceblue;" >Revert back to default Cover Pic </p>
+                            </div >
+                            <!-- <button  type="submit" class="btn btn-danger" style="background-color: #dc3545; text-align: center;">revert</button> -->
+                            <div style="text-align: center;">
+                                <button type="submit" class="animated-button1">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Revert
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- <form  action="/hotel/cover"  method="post" enctype="multipart/form-data">
+                    <div class="p-3 py-5 form-group">
+                        <div class="d-flex justify-content-between align-items-center experience"> <span> <B> File </B></span> </div><br>
+                        <div class="col-md-12"><label class="labels">Change cover photo</label><input type="file" name="cover" class="form-control" placeholder="cover" value="" required></div> <br>
+                    </div>
+                    <button type="submit" class="btn btn-light">Submit</button>
+                </form>
+            
+                <form action="/hotel/cover/remove" method="get">
+                    <button type="submit" class="btn btn-danger" style="background-color: #dc3545;">remove</button>
+                </form> -->
+            
+            </div>
+
+            <!-- form for colors -->
+                <form id="color-form" action="/hotel/color" method="post">
+                    <div style="display: flex; flex-direction: column; " >
+                        <div style="margin-bottom: 50px; margin-top: 30px;">
+                            <label for="typeSelectColor" class="formText">Select a section to update color :</label>
+                            <select class="form-control" id="typeSelectColor" name="section" style="width: 80%;" onchange='updateColor()'>
+                                <option value=""> -- Select -- </option>
+                                <option value="0">About-Us </option>
+                                <option value="1">Menu</option>
+                                <option value="2">Customers</option>
+                            </select>
+                        </div>
+                        <div  class="colorcontainer">
+                            <label class="labels formText">Color:</label>
+                            <!-- <input id="colorInput" style="width: 80%; height: 30px;" type="color"  name="color" class="form-control"  placeholder="color" required > -->
+                            <input  id="newColorInput" name="color" required  data-jscolor="{
+                                value: '#33AACCFF',
+                                backgroundColor: '#333',
+                                shadowColor: '#FFFFFF80',
+                                width: 221,
+                                height: 221
+                                }">
+                        </div>
+                        <div style="text-align: center;">
+                            <!-- <button  type="submit" class="btn btn-light">Submit</button> -->
+                            <button type="submit" class="animated-button10">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- <button type="submit">Submit</button> -->
+                </form>
+
+            <a id="close-popup3">&times;</a>
+        </div>
+    </div>
+
+
+    <% if(typeOfUser == 'Hotel' && userToVisit == userId){ %>
+    <div id="settings">
+        <i id="open-popup3" class="fa fa-cog fa-bounce " style="color: aliceblue; cursor: pointer; margin-top: 70px; margin-left: 10px;"></i>
+    </div>
+    <%} %>
+    <div class="banner">
+        
+        <div id="left-side" >
+            <h1 class="banner-heading"><%= HotelProfile.name %></h1>
+            
+            <div class="containerForFollow" >
+                <p class="banner-paragraph"><%=oneQuote%></p>
+                 <div  style="color: aliceblue; display: flex; justify-content: space-between;">
+    
+                        <div class="col text-left" data-toggle="modal" data-target="#exampleModalCenter" style="cursor:pointer;">
+                            <h5>Followers</h5>
+                            <span style="color: goldenrod; font-size: 13px;" id="followers" class="num"><%=followers.length%></span>
+                        </div>  
+                        <div  class="col text-center">
+                            <% if(followbtn == true){
+                                var fvalue = "follow";
+                            }
+                            else{
+                                var fvalue = "unfollow";
+                            }
+                            console.log(userToVisit,userId)
+                                if(userToVisit!=userId){ %>                
+                                    <button class="banner-button" onclick="followHotel(value)" id="fbutton" value="<%=HotelProfile.id%>" class="btn btn-primary"><%= fvalue %></button>
+                            <% }
+                                else{ %>
+                                    <button class="banner-button" id="open-popup">Edit</button>
+                                    <!-- <button  id="fbutton" value="<%=HotelProfile.id%>" >Edit</button> -->
+                
+                
+                                <% }
+                                %>
+                            <span class="num"></span>
+                        </div>
+                        <div class="col text-right"  data-toggle="modal" data-target="#exampleModalCenter1" style="cursor:pointer;">
+                            <h5>Following</h5>
+                            <span style="color: goldenrod; font-size: 13px;" id="following" class="num"><%=following.length%></span>
+                        </div>
+                    
+                 </div>   
+            </div>
+             
+        </div>
+        
+        <!-- image for logo -->
+        
+        <% if (HotelProfile.avatar) {
+
+            var imageForLogo = "/uploads/hotelProfile/" + HotelProfile.avatar.split('/').pop();
+            console.log(imageForLogo)
+        } else {
+            var imageForLogo = "/uploads/hotelProfile/logo.png";
+        } %>
+
+        <div class="right-side">
+            <div class="banner-img" style="background-image: url('<%=imageForLogo%>');">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- popup form for hotel edits -->
+<section >
+    <div style="z-index: 999999;" id="popup-container">
+        <div id="popup-form">
+            <a  id="close-popup">&times;</a> 
+                    <div  class="container" style="margin-top: 20px; font-size: 13px;" >
+                        <form id="editForm" action="/hotel/profile/update/<%=HotelProfile.id%>" method="POST"  autocomplete="off" enctype="multipart/form-data" >
+                            <div style="text-align: center; font-size: 20px; margin-bottom: 20px; color: lightgoldenrodyellow;">
+                                <p class="formText"  style="color: lightgoldenrodyellow; font-family: monospace;">--- Page Settings ---</p>
+                            </div>
+
+                            <div>
+                                <label class="labels formText">Hotel Name :</label>
+                                <input type="text" name="name" class="form-control" maxlength="15" placeholder="first name" value="">
+                            </div>
+                            <!-- <div>
+                                <label class="labels formText">Email ID :</label>
+                                <input type="text" name="email" class="form-control" placeholder="enter email id" value="">
+                            </div> -->
+                            <!-- <div>
+                                <label class="labels formText">About-us :</label>
+                                <input type="text" class="form-control" placeholder="enter caption" value="">
+                            </div> -->
+                            <div style="margin-bottom: 10px;">
+                                <label class="labels formText">District :</label>
+                                <select name="district"   class="form-control" >
+                                            
+                                    <option  disabled selected>-- Please select a District--</option>
+                                    
+                                    <%for (district of districts) { %>
+                                        
+                                        <option value= "<%=district._id%>">&#9679; <%=district.name%> </option>
+                                        
+                                        <%}%>
+                                        
+                                </select>   
+                            </div>
+                            <div>
+                                <label class="labels formText"> Add or Change Logo :</label>
+                                <input style="border-radius: 20px; background-color: black;" class="formText" type="file" name="avatar"  placeholder="experience" value="">
+                            </div>
+                            <div>
+                                <label class="labels formText"> Address :</label>
+                                <input  type="text" class="form-control" name="address" maxlength="60"  placeholder="change your address here!" value="">
+                            </div>
+                            <div>
+                                <label class="labels formText"> Phone :</label>
+                                <input  type="text" class="form-control" name="phone" maxlength="10" minlength="10"  placeholder="change your mobile no here!" value="">
+                            </div>
+                            <div>
+                                <label class="labels formText"> About-us :</label>
+                                <textarea style="border-radius: 10px;" type="text" class="form-control" name="about" cols="5" rows="5" maxlength="230"  placeholder="change paragraph in about us section " value=""></textarea>
+                            </div>
+                            <!-- <div style="text-align: center;">
+                                <button class="btn btn-primary profile-button" type="submit">Save Profile</button> 
+                            </div> -->
+                            <div style="text-align: center;">
+                                <button type="submit" class="animated-button12">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Save Profile
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+          <!-- <button id="close-popup">Close</button> -->
+        </div>
+    </div>
+</section>
+
+<% if(HotelProfile.colors[0]){
+    var color0 = HotelProfile.colors[0];
+
+}
+else{
+    var color0 = "#ddd";
+} %>
+
+<section class="about-us" style="background-color: <%= color0 %>;">
+    <div class="about-us-content">
+        <h1 class="about-us-heading">About us!</h1>
+        <div class="underline">
+            <div class="small-underline"></div>
+            <div class="large-underline"></div>
+        </div>
+        <h3 class="sub-heading"> <%= HotelProfile.name %></h3>
+        <p class="about-us-paragraph">
+            <%if(HotelProfile.about){%>
+                <%=HotelProfile.about%>
+            <%}
+            else{%>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur nibh ut tellus posuere luctus. Nunc vitae luctus risus. Donec viverra aliquam viverra. Morbi gravida tellus non ex accumsan, lobortis molestie turpis mollis.
+            <%}%>
+        </p>
+            <% if(typeOfUser == 'Hotel' && userToVisit == userId){ %>
+                <button id="open-popup1" class="about-us-button">
+                    Edit Podium
+                    <i class="fas fa-angle-double-right btn-arrow"></i>
+                </button>
+
+            <%} %>
+    </div>
+
+    <div class="about-us-images">
+    
+        
+        <%  
+            var array1  = [];
+            for(i=0;i<HotelProfile.collage.length;i++){
+                if(HotelProfile.collage[i] == ""){
+                     var temp = "https://cdn.pixabay.com/photo/2016/11/18/22/21/restaurant-1837150_960_720.jpg";
+                     array1.push[temp];
+                     continue; 
+                }
+
+                array1.push[HotelProfile.collage[i]];
+            }
+        %>
+
+        <%  var image1 =HotelProfile.collage[0] ? "/uploads/hotelProfile/collage/"+ HotelProfile.collage[0] : "https://cdn.pixabay.com/photo/2016/11/18/22/21/restaurant-1837150_960_720.jpg" 
+        %>
+        <img src="<%= image1 %>" alt="" class="image image1">
+        
+        <%  var image2 =HotelProfile.collage[1] ? "/uploads/hotelProfile/collage/"+ HotelProfile.collage[1] : "https://cdn.pixabay.com/photo/2017/01/26/02/06/platter-2009590_960_720.jpg" 
+        %>
+        <img src="<%= image2 %>" alt="" class="image image2">
+
+        <%  var image3 =HotelProfile.collage[2] ? "/uploads/hotelProfile/collage/"+ HotelProfile.collage[2] : "https://cdn.pixabay.com/photo/2017/08/03/21/48/drinks-2578446_960_720.jpg" 
+        %>
+        <img src="<%= image3 %>" alt="" class="image image3">
+
+        <%  var image4 =HotelProfile.collage[3] ? "/uploads/hotelProfile/collage/"+ HotelProfile.collage[3] : "https://cdn.pixabay.com/photo/2021/02/08/07/39/chef-5993951_960_720.jpg" 
+        %>
+        <img src="<%= image4 %>" alt="" class="image image4">
+    
+    </div>	
+
+    <!-- form for collage pics -->
+        <!-- <button id="open-popup1">Open Popup Form</button> -->
+
+        <div style="z-index: 999999;" id="popup-container1">
+            <div id="popup-form1">
+                <a  id="close-popup1">&times;</a> 
+                <div  class="container" style="margin-top: 20px; font-size: 13px;" >
+                    <form action="/hotel/collage"  method="post" enctype="multipart/form-data">
+                        <div style="text-align: center; font-size: 20px; margin-bottom: 20px; ">
+                            <p class="formText"  style="color: #ff913c; font-family: monospace;">--- Collage --- </p>
+                        </div>
+                        <div class="form-group" style="margin-top: 40px; margin-bottom: 30px;">
+                            <label for="typeSelect" style="color: aliceblue;" >Select a photo to update :</label>
+                            <select class="form-control" id="typeSelect" name="Photo">
+                            <option value="0">Photo 1</option>
+                            <option value="1">Photo 2</option>
+                            <option value="2">Photo 3</option>
+                            <option value="3">Photo 4</option>
+                            </select>
+                        </div>
+                        <div >
+                            <label class="labels" style="color: aliceblue;">File :</label>
+                            <input type="file" name="collage" class="form-control" placeholder="collage" value="" required>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                        <div style="text-align: center;">
+                            <button type="submit" class="animated-button3">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                Submit
+                            </button>
+                        </div>
+
+                        <!-- <button type="submit">Submit</button> -->
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+</section>
+
+
+<!-- varities -->
+<!-- for menu -->
+
+
+<% if(HotelProfile.colors[1]){
+    var color1 = HotelProfile.colors[1];
+}
+else{
+    var color1 = "antiquewhite";
+} %>
+<section class="var" style="background-color: <%= color1 %>;">
+    <div class="common-header">
+        <div class="common-heading">
+            <h1 >Varieties In  <%= HotelProfile.name %></h1>
+        </div>
+        <!-- <div class="underline">
+            <div class="small-underline"></div>
+            <div class="large-underline"></div>
+        </div> -->
+    </div>
+    <% if(typeOfUser == "Hotel" && userToVisit==userId){%>
+        <!-- <div id="open-popup2" class="var-btn-wrapper"> -->
+            <div id="open-popup2"  style="text-align: center;">
+                <button type="submit" class="animated-button7" style="padding: 10px 20px; font-size: 10px; border-radius: 100px; border: none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Add Menu
+                </button>
+            </div>
+            <!-- <button class="var-btn">Add Menu</button> -->
+        <!-- </div> -->
+    <% } %>
+    <div class="var-wrapper">
+            <div class="carousel-container">
+
+                <%console.log(HotelProfile.menuArray.length,"dsdsdsdsdsdsdsds");%>
+                <% if(HotelProfile.menuArray.length==0){%>
+                    <div style="text-align: center; position: relative; top: 200px;">
+                        <h3>no items added yet!</h3>
+                    </div>
+                <%}%>
+                
+                <%
+                var j = 0 ;
+                for(item of HotelProfile.menuArray){
+                     if(typeOfUser != "Hotel" && userToVisit !=userId){ 
+                        if(!item.isAvailable){
+                            j+=1;
+                        }
+                     }
+                }%>
+
+
+                <%if(j == HotelProfile.menuArray.length && HotelProfile.menuArray.length!=0){%>
+                    <div style="text-align: center; position: relative; top: 200px;">
+                        <h3>no items added yet!</h3>
+                    </div>
+                <%}else{
+
+                    var i=0;
+                    
+                    for(item of HotelProfile.menuArray){ 
+                        if(typeOfUser != "Hotel" && userToVisit !=userId){
+                            if(!item.isAvailable){
+                                continue;
+                            }
+                        }%> 
+                    
+                            <div <% if (i == 0) { %>class="carousel-item active"<% } else{%> class="carousel-item" <%}  i=1;%> >
+                        
+                                <%-include('menu',{color1:color1 })%>
+        
+                            </div>
+
+                       <%} 
+
+
+                }%>
+
+
+
+           
+                
+                        
+                     
+             
+                <a class="carousel-prev" style="color: white;">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a class="carousel-next"  style="color: white;">
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+    </div>
+
+    <!-- <div class="var-btn-wrapper">
+        <button class="var-btn">check all varieties</button>
+    </div> -->
+
+    <!-- form for adding the menu -->
+    <div id="popup-container2" style="z-index: 999999;">
+        <div id="popup-form2">
+            <a  id="close-popup2">&times;</a> 
+            <div  class="container" style="margin-top: 20px; font-size: 13px;" >
+                <form action="/hotel/addMenu/<%=HotelProfile.id%>"  method="post" enctype="multipart/form-data" id="menuForm">
+                    <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                        <p class="formText"  style="color: rgb(5, 241, 241); font-family: monospace;">--- Add Menu --- </p>
+                    </div>
+                    <div>
+                        <label for="name" style="color: aliceblue; font-family: monospace; font-size: 16px;">Menu Name :</label>
+                        <input type="text" id="name" name="name" placeholder="enter name of the dish" style="border-radius: 5px;" required>
+                    </div>
+                    <div>
+                        <label for="email" style="color:  aliceblue;font-family: monospace; font-size: 16px;">Detail :</label>
+                        <textarea style="border-radius: 5px; border: 1px solid transparent;;" name="content" id="" cols="1" rows="2" placeholder="enter description" required></textarea>
+
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                       <label class="labels" style="color:  aliceblue; font-family: monospace; font-size: 16px;">File :</label>
+                       <input type="file" name="picturePath" class="form-control" placeholder="Menu" value="" required>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                    <div style="text-align: center;">
+                        <button type="submit" class="animated-button6">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- customers -->
+
+<% if(HotelProfile.colors[2]){
+    var color2 = HotelProfile.colors[2];
+}
+else{
+    var color2 = "rgba(0,0,0,.9)";
+} %>
+<section class="customers" style="background-color: <%= color2 %>;">
+    <div class="common-header">
+        <div class="common-heading">
+            <h1 >Customer's Talk</h1>
+        </div>
+        <!-- <div class="underline">
+            <div class="small-underline"></div>
+            <div class="large-underline"></div>
+        </div> -->
+    </div>
+
+    <p class="customers-paragraph">The below feedback is from our beloved customers. We appreciate the time and efforts they invest in loving us ! </p>
+
+    <!-- <div class="customer-card-wrapper" style="display: flex;"> 
+
+        <%
+            var i=0;
+            for(item of HotelProfile.reviewPosts){ 
+                if(i>3){
+                    break;
+                } %>
+
+                <div class="customer-card">
+                    <div class="customer-image-wrapper">
+                        <%
+                            if(item.user.avatar){%>
+                                <img height="136px" src="<%=item.user.avatar%>" alt="" class="customer-image">
+                                
+                            <%}
+                            else{%>
+                                <img height="136px" src="/uploads/userProfile/pics/noprofile.png" alt="" class="customer-image">
+                           <% } %>
+                    </div>
+                    <div class="customer-info">
+                        <h3 class="name"><%= item.user.name %></h3>
+                        <p class="customer-paragraph1">Happy Customer,</p>
+                        <p style="margin-bottom: 0;" class="customer-paragraph2 "><%= item.content%></p>
+                    </div>
+                </div>
+
+        <%}%>
+
+
+
+    </div> -->
+    <div class="customer-card-wrapper">
+        <%
+            if(rp.length==0){%>
+                <div style="text-align: center; color: red;">* No reviews posted yet!</div>
+            <%}
+            var i=0;
+            for(item of rp){ 
+                if(i>3){
+                    break;
+                } %>
+        <div class="customer-card">
+            <div class="customer-image-wrapper">
+                <%
+                    if(item.user.avatar){%>
+                        <img height="136px" src="<%=item.user.avatar%>" alt="" class="customer-image">
+                        
+                    <%}
+                    else{%>
+                        <img height="136px" src="/uploads/userProfile/pics/noprofile.png" alt="" class="customer-image">
+                <% } %>
+            </div>
+            <div class="customer-info">
+                <h3  class="name"><%= item.user.name %></h3>
+                <p class="customer-paragraph1">Voice Of Customer,</p>
+                <hr style="color: aliceblue;">
+                <p class="customer-paragraph2"><%= item.content%></p>
+            </div>
+        </div>
+
+        <%}%>
+        
+    </div>
+</section>
+<!-- footer -->
+<div class="footer">
+    <div class="main">
+        <div class="footer-list-wrapper">
+            <h3 class="footer-heading sarr"> <%= HotelProfile.name %></h3>
+
+            <ul class="footer-list">
+                <%if(HotelProfile.district != null){%>
+
+                    <li class="footer-list-item">
+                        <a href="mailto:<%=HotelProfile.email%>" class="footer-list-link">
+                            <%=HotelProfile.district.name%>
+                        </a>
+                    </li>
+
+                <%}%>
+                 
+                <li class="footer-list-item">
+                    <a href="mailto:<%=HotelProfile.email%>" class="footer-list-link">
+                        <%=HotelProfile.email%>
+                    </a>
+                </li>
+                <li class="footer-list-item">
+                    <a href="#" class="footer-list-link">
+                        <%=HotelProfile.address%>
+                    </a>
+                </li>
+                <li class="footer-list-item">
+                    <a href="tel:<%=HotelProfile.phone%>" class="footer-list-link">
+                        Phone : <%=HotelProfile.phone%>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+        
+
+    <div class="creator-part">
+        <div class="copyright-text">
+            <p>Copyright &copy; 2023 </p>
+        </div>
+        <div class="text-right">
+            <p>Made with love from <span>OSCAR</span></p>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- modal for followers -->
+<div class="modal fade-in-element" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+      <div class="modal-content" id="followContainer">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: aliceblue;">Followers</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef; font-size:25px;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="followBody" style="color:aliceblue">
+          <% 
+            for(i=0;i<followers.length;i++){%>
+                <div class="eachElementInFollow" onclick="location.href='/<%=followers[i].UserOrHotel%>/profile/<%=followers[i].user.id%>'">
+                    <div>
+                        <img src="<%=followers[i].user.avatar%>" alt="Follower" class="imageInFollow">
+                    </div>
+                    <div>
+                        <p>
+                            <%=followers[i].user.name%>
+                        </p>
+                    </div>
+                </div>
+                <hr style="margin: 0.3rem 0;">
+          <%}%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for following -->
+<div class="modal fade-in-element" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+      <div class="modal-content" id="followContainer">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: aliceblue;">Following</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef; font-size:25px;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="followBody" style="color:aliceblue">
+          <% 
+            for(i=0;i<following.length;i++){%>
+                <div class="eachElementInFollow" onclick="location.href='/<%=following[i].UserOrHotel%>/profile/<%=following[i].user.id%>'">
+                    <div>
+                        <img src="<%=following[i].user.avatar%>" alt="Follower" class="imageInFollow">
+                    </div>
+                    <div>
+                        <p>
+                            <%=following[i].user.name%>
+                        </p>
+                    </div>
+                </div>
+                <hr style="margin: 0.3rem 0;">
+          <%}%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- script for search -->
+<script src="/assets/js/searchForHotel.js"></script>
+
+<script type="text/javascript" src="/assets/js/hotel.js"></script>
+
+
+
+<!-- <% if(typeOfUser == "Hotel" && userToVisit==userId){%>
+    
+    
+<%}%> -->
+
+<!-- script for carousel -->
+<script>
+    function runCarousel() {
+    const container = document.querySelector('.carousel-container');
+    const items = container.querySelectorAll('.carousel-item');
+    const prevButton = container.querySelector('.carousel-prev');
+    const nextButton = container.querySelector('.carousel-next');
+    const itemCount = items.length;
+    let currentIndex = 0;
+    let intervalId = null;
+
+    function showItem(index) {
+        items.forEach(item => item.classList.remove('active'));
+        items[index].classList.add('active');
+    }
+
+    function showPrevItem() {
+        clearInterval(intervalId);
+        currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+        showItem(currentIndex);
+        // intervalId = setInterval(showNextItem, 5000);
+    }
+
+    function showNextItem() {
+        clearInterval(intervalId);
+        currentIndex = (currentIndex + 1) % itemCount;
+        showItem(currentIndex);
+        // intervalId = setInterval(showNextItem, 5000);
+    }
+
+    prevButton.addEventListener('click', showPrevItem);
+    nextButton.addEventListener('click', showNextItem);
+
+    // intervalId = setInterval(showNextItem, 5000);
+    }
+
+    runCarousel();
+
+    function updateColor() {
+        var select = document.getElementById("typeSelectColor");
+        var input2 = document.getElementById('newColorInput');
+
+        //var input = document.getElementById("colorInput");
+        var colors = JSON.parse('<%- JSON.stringify(HotelProfile.colors) %>');
+        console.log(colors);
+        var index = select.value;
+        console.log(index)
+        if (colors[index]) {
+          // console.log(colors[index]);
+          //input.value = colors[index];
+          input2.jscolor.fromString(colors[index]);
+
+        } else {
+          //input.value = "#000000"; // default to black if no color is defined
+          input2.jscolor.fromString('#000000ff');
+
+        }
+
+
+
+      }
+
+</script>
+
+<script>
+    const paragraph = document.querySelector('.about-us-paragraph');
+    paragraph.style.color = "<%= textColor1 %>";
+
+    const paragraph1 = document.querySelector('.customers-paragraph');
+    paragraph1.style.color = "<%=textColor2%>"
+</script>

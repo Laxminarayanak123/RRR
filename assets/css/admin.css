@@ -1,0 +1,437 @@
+.button {
+    --green: #1BFD9C;
+    font-size: 15px;
+    padding: 0.7em 2.7em;
+    letter-spacing: 0.06em;
+    position: relative;
+    font-family: inherit;
+    border-radius: 0.6em;
+    overflow: hidden;
+    transition: all 0.3s;
+    line-height: 1.4em;
+    border: 2px solid var(--green);
+    background: linear-gradient(to right, rgba(27, 253, 156, 0.1) 1%, transparent 40%,transparent 60% , rgba(27, 253, 156, 0.1) 100%);
+    color: var(--green);
+    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.4), 0 0 9px 3px rgba(27, 253, 156, 0.1);
+    }
+
+    .button:hover {
+    color: #82ffc9;
+    box-shadow: inset 0 0 10px rgba(27, 253, 156, 0.6), 0 0 9px 3px rgba(27, 253, 156, 0.2);
+    }
+
+    .button:before {
+    content: "";
+    position: absolute;
+    left: -4em;
+    width: 4em;
+    height: 100%;
+    top: 0;
+    transition: transform .4s ease-in-out;
+    background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%,rgba(27, 253, 156, 0.1) 60% , transparent 100%);
+    }
+
+    .button:hover:before {
+    transform: translateX(15em);
+    }
+    #buttonArray{
+        display: flex; justify-content: space-around; margin-top: 40px;
+        /* flex-wrap: wrap; */
+    }
+    /* #buttonArray div{
+        margin-bottom: 30px;
+    } */
+    @media(max-width:800px){
+        #buttonArray {
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        #buttonArray div{
+            margin-bottom: 50px;
+        }
+    }
+    #popup-container5 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #popup-form5 {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 0 20px #65f47a;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* width: 50%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        padding: 30px;
+        width: 90%;
+        height: 80%;
+        position: relative;
+        /* overflow-y: scroll; */
+        z-index: 9999;
+    }
+    
+    #popup-form5 label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    #popup-form5 input,
+    #popup-form5 textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    #popup-form5 button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    #popup-form5 button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+    
+    #close-popup5 {
+        /* background-color: #dc3545; */
+        color: #c82333;
+        /* border: none; */
+        padding: 10px 20px;
+        /* border-radius: 5px; */
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 1px;
+    }
+    
+    #close-popup5:hover {
+        /* background-color: #c82333; */
+        cursor: pointer;
+        color: #c40f21;
+    }
+
+
+    #popup-container6 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #popup-form6 {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 0 20px #65f47a;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* width: 50%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        padding: 30px;
+        width: 90%;
+        height: 80%;
+        position: relative;
+        /* overflow-y: scroll; */
+        z-index: 9999;
+    }
+    
+    #popup-form6 label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    #popup-form6 input,
+    #popup-form6 textarea {
+        display: block;
+        width: 300px;
+        height: 25px;
+        margin-bottom: 20px;
+    }
+    
+    #popup-form6 button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    #popup-form6 button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+    
+    #close-popup6 {
+        /* background-color: #dc3545; */
+        color: #c82333;
+        /* border: none; */
+        padding: 10px 20px;
+        /* border-radius: 5px; */
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 1px;
+    }
+    
+    #close-popup6:hover {
+        /* background-color: #c82333; */
+        cursor: pointer;
+        color: #c40f21;
+    }
+
+
+    #popup-container7 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #popup-form7 {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 0 20px #65f47a;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* width: 50%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        padding: 30px;
+        width: 90%;
+        height: 80%;
+        position: relative;
+        /* overflow-y: scroll; */
+        z-index: 9999;
+    }
+    
+    #popup-form7 label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    #popup-form7 input,
+    #popup-form7 textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    #popup-form7 button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    #popup-form7 button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+    
+    #close-popup7 {
+        /* background-color: #dc3545; */
+        color: #c82333;
+        /* border: none; */
+        padding: 10px 20px;
+        /* border-radius: 5px; */
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 1px;
+    }
+    
+    #close-popup7:hover {
+        /* background-color: #c82333; */
+        cursor: pointer;
+        color: #c40f21;
+    }
+
+
+    #popup-container8 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #popup-form8 {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 0 20px #65f47a;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* width: 50%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        padding: 30px;
+        width: 90%;
+        height: 80%;
+        position: relative;
+        /* overflow-y: scroll; */
+        z-index: 9999;
+    }
+    
+    #popup-form8 label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    #popup-form8 input,
+    #popup-form8 textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    #popup-form8 button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    #popup-form8 button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+    
+    #close-popup8 {
+        /* background-color: #dc3545; */
+        color: #c82333;
+        /* border: none; */
+        padding: 10px 20px;
+        /* border-radius: 5px; */
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 1px;
+    }
+    
+    #close-popup8:hover {
+        /* background-color: #c82333; */
+        cursor: pointer;
+        color: #c40f21;
+    }
+
+
+    #popup-container9 {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #popup-form9 {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 40px;
+        box-shadow: 0 0 20px #65f47a;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+
+        /* width: 50%;
+        background-color: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+        padding: 30px;
+        width: 90%;
+        height: 80%;
+        position: relative;
+        /* overflow-y: scroll; */
+        z-index: 9999;
+    }
+    
+    #popup-form9 label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    
+    #popup-form9 input,
+    #popup-form9 textarea {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    #popup-form9 button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    #popup-form9 button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+    
+    #close-popup9 {
+        /* background-color: #dc3545; */
+        color: #c82333;
+        /* border: none; */
+        padding: 10px 20px;
+        /* border-radius: 5px; */
+        cursor: pointer;
+        font-size: 30px;
+        position: absolute;
+        top: 10px;
+        right: 1px;
+    }
+    
+    #close-popup9:hover {
+        /* background-color: #c82333; */
+        cursor: pointer;
+        color: #c40f21;
+    }

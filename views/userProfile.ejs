@@ -1,0 +1,288 @@
+<% if (message != '') { %>
+    <div class="flash flash-success fade">
+        <p>
+            <%= message %>
+        </p>
+    </div>
+<% } %>
+<link rel="stylesheet" href="/assets/css/userProfile.css">
+<!-- List for users-->
+<div style="z-index: 999999;" id="popup-container5">
+    <div id="popup-form5">
+        <a  id="close-popup5">&times;</a> 
+        <div  class="containerForUsers" style="margin-top: 15px;" >
+            <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+                <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- List of Users --- </p>
+            </div>
+            <hr>
+                <div class="user-container">
+                    <% for (var item1 of users){ %>
+                        <div class="user-card" >
+                            <img src="<%=item1.avatar%>" alt="" class="user-image">
+                            <h3 class="user-name"><%=item1.name%></h3>
+                        </div>
+                        
+                    <%}%>
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<!-- List for hotels-->
+<div style="z-index: 999999;" id="popup-container6">
+<div id="popup-form6">
+    <a  id="close-popup6">&times;</a> 
+    <div  class="containerForHotel" style="margin-top: 15px;" >
+        <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
+            <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- List of Hotels --- </p>
+        </div>
+        <hr>
+            <div class="user-container">
+                <% for (var item2 of  hotelNames){ %>
+                    <div class="user-card" >
+                        <img src="<%=item2.avatar%>" alt="" class="user-image">
+                        <h3 class="user-name"><%=item2.name%></h3>
+                    </div>
+                    
+                <%}%>
+            </div>
+    </div>
+</div>
+</div>
+
+<!-- form for the cover photo -->
+
+<div id="popup-container3" style="z-index: 999999;">
+    <div id="popup-form3">
+        <a id="close-popup3">&times;</a>
+        <div style=" display: flex; flex-direction: column; margin-top: 40px;">
+            <div style="text-align: center;">
+                <form action="/user/cover"  method="post" enctype="multipart/form-data">
+                    <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        <!-- <div style="text-align: center;">
+                            <p class="formText" >change cover pic </p>
+                        </div > -->
+                            <label style="margin-bottom: 20px;"  class="formText">Change cover photo</label>
+                            <input type="file" name="cover" class="form-control" style="width: 90%; " placeholder="cover" value="" required>
+                    </div>
+                    <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                    <div style="text-align: center;">
+                        <button type="submit" class="animated-button8">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <!-- <br> -->
+            <hr>
+            <!-- <br> -->
+            <div style="text-align: center;">
+                <form action="/user/cover/remove" method="get">
+                    <div style="text-align: center; margin-bottom: 10px;" >
+                        <p class="formText" >Revert back to default Cover Pic </p>
+                    </div >
+                    <!-- <button  type="submit" class="btn btn-danger" style="background-color: #dc3545; text-align: center;">revert</button> -->
+                    <div style="text-align: center;">
+                        <button type="submit" class="animated-button1">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Revert
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- form for the user edit-->
+
+<div id="popup-container" style="z-index: 999999;">
+    <div id="popup-form">
+        <a id="close-popup">&times;</a>
+        <div style="margin-top: 50px;">
+            <form action="/user/profile/update/<%= UserProfile._id %>" method="POST"  autocomplete="off" enctype="multipart/form-data" >
+                <div style="display: flex; flex-direction: column; ">
+                        <div style="text-align: center;color: aliceblue;">
+                            <h4>-- Profile Settings --</h4>
+                        </div>
+                        <hr style="color: aqua; border-top: 2px solid;">
+                        <div>
+                            <label style="margin-bottom: 20px;"  class="formText">Change username :</label>
+                            <input style="border-radius: 5px; width: 65%;" type="text" name="name" maxlength="30" placeholder="enter new username" value="">
+                        </div>
+                        <!-- <div>
+                            <label style="margin-bottom: 20px;"  class="formText">Email :</label>
+                            <input style="border-radius: 5px; width: 80%;" type="text" name="email"  placeholder="enter email id" value="">
+                        </div> -->
+                        <div class="formText">
+                            <label style="margin-bottom: 20px;"  class="formText">Profile Pic :</label>
+                            <input style="border-radius: 20px;" type="file" name="avatar" placeholder="experience" value="">
+                        </div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <!-- <button  type="submit" class="btn btn-light">Save Profile</button> -->
+                    <div style="text-align: center;">
+                        <button type="submit" class="animated-button11">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Save Profile
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div style="height: 100%; width: 100%; background-color: rgb(18,18,18); padding-top: 1px;">
+    <div id="userProfile" style="background-color: black;" >
+        <% if(typeOfUser == 'User' && userToVisit == userId){ %>
+            <div id="settings" style="position: absolute; margin-top: 10px; margin-left: 10px;">
+                <i id="open-popup3" class="fa fa-cog fa-bounce " style="color: aliceblue; cursor: pointer; "></i>
+            </div>
+            <%} %>
+        <!-- for cover photo -->
+        <% if (UserProfile.coverPic) {
+            var imageForBack1 = "/uploads/userProfile/coverPics/" + UserProfile.coverPic;
+        } else {
+            var imageForBack1 = "https://i.imgur.com/K7A78We.jpg";
+        } %>
+
+        <div > 
+            <img id="coverImg"  src="<%=imageForBack1%>" alt="">
+        </div>
+        <div id="userImg">
+            <img src="<%=UserProfile.avatar%>" alt="user" id="profileImg">
+        </div>
+        <div id="userDetails" >
+            <h3 id="userName"><%= UserProfile.name%></h3>
+            <p class="whiteText" style="margin-top: -1px; font-size: 0.7rem;"><%= UserProfile.email%></p>
+        </div>
+        <div style=" margin-top: 30px; margin-bottom: 20px; text-align: center;">
+            <%if(userToVisit!=userId){ %>                
+            <button onclick="follow(value)" id="fbutton" value="<%=UserProfile.id%>" style=" border: none; border-radius: 50px; background-color: cyan; color: crimson; width: 117px; height: 46px;"><%= followbtn ? "follow" : "unfollow" %></button>
+            <% }
+            else{ %>
+                <button class="button1" id="open-popup" >Edit</button>
+            <% }%>
+        </div>
+        <div id="belowInfo" >
+            <div  class="eachItem" >
+                <h3  class="scores"><%=UserProfile.posts.length%></h3>
+                <small class="whiteText">Posts</small>
+            </div>
+            <div  class="eachItem" data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer;">
+                <h3 id="followers" class="scores"><%=followers.length%></h3>
+                <small class="whiteText">Followers</small>
+            </div>
+            <div  class="eachItem" data-toggle="modal" data-target="#exampleModalCenter1" style="cursor: pointer;">
+                <h3 id="following" class="scores"><%=following.length%></h3>
+                <small class="whiteText">Following</small>
+            </div>
+        </div>
+
+    </div>
+    <!-- posts starting -->
+
+    <%  if(UserProfile.posts.length!=0){ %>
+
+        <h4 style="color: cornsilk; font-style: italic; text-decoration: underline; text-align: center; font-family: monospace; padding: 0 40px; font-size: 16px;"><%= UserProfile.name%>'s Contribution</h4>
+        <div id="postDiv" style="display: flex; justify-content: center;">
+            <ul   id="venom">
+                
+                <%for (post of UserProfile.posts) {%>
+                    
+                    <%- include('profilePosts')%>
+                    
+                <%}%>
+                    
+            </ul>
+                
+        </div>
+    <%}%>
+</div>
+    
+<!-- modal for followers -->
+<div class="modal fade-in-element" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+      <div class="modal-content" id="followContainer">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: aliceblue;">Followers</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="followBody" style="color:aliceblue">
+          <% 
+            for(i=0;i<followers.length;i++){%>
+                <div class="eachElementInFollow" onclick="location.href='/<%=followers[i].UserOrHotel%>/profile/<%=followers[i].user.id%>'">
+                    <div>
+                        <img src="<%=followers[i].user.avatar%>" alt="Follower" class="imageInFollow">
+                    </div>
+                    <div>
+                        <p>
+                            <%=followers[i].user.name%>
+                        </p>
+                    </div>
+                </div>
+                <hr style="margin: 0.3rem 0;">
+          <%}%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for following -->
+<div class="modal fade-in-element" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+      <div class="modal-content" id="followContainer">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: aliceblue;">Following</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="followBody" style="color:aliceblue">
+          <% 
+            for(i=0;i<following.length;i++){%>
+                <div class="eachElementInFollow" onclick="location.href='/<%=following[i].UserOrHotel%>/profile/<%=following[i].user.id%>'">
+                    <div>
+                        <img src="<%=following[i].user.avatar%>" alt="Follower" class="imageInFollow">
+                    </div>
+                    <div>
+                        <p>
+                            <%=following[i].user.name%>
+                        </p>
+                    </div>
+                </div>
+                <hr style="margin: 0.3rem 0;">
+          <%}%>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- script for search -->
+<script src="/assets/js/search.js"></script>
+    
+<script type="text/javascript" src="/assets/js/userPage.js"></script>

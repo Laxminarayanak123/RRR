@@ -1,0 +1,90 @@
+li{
+    /* background-color: #eee; */
+    font-family: "Poppins", sans-serif;font-weight: 300}.card{border:none}.ellipsis{color: #a09c9c}hr{color: #a09c9c;margin-top: 4px;margin-bottom: 8px}.muted-color{color: #a09c9c;font-size: 13px}.ellipsis i{margin-top: 3px;cursor: pointer}.icons i{font-size: 25px}.icons .fa-heart{color: red}.icons .fa-smile-o{color: yellow;font-size: 29px}.rounded-image{border-radius: 50%!important;display: flex;justify-content: center;align-items: center;height: 50px;width: 50px}.name{font-weight: 600}.comment-text{font-size: 12px}.status small{margin-right: 10px;color: blue}.form-control{border-radius: 26px;width: 20%;}.comment-input{position: relative; }.fonts{position: absolute;right: 13px;top:8px;color: #a09c9c}.form-control:focus{color: #495057;background-color: #fff;border-color: #8bbafe;outline: 0;box-shadow: none}
+
+.postCard{
+    background-color: black;
+    border: 2px solid rgb(50,50,50);
+    border-radius: 10px;
+}
+.upperArea{
+    width: 100%;
+    padding-top: 10px; 
+    padding-bottom: 10px; 
+    padding-left:15px;
+    padding-right: 15px; 
+    font-size: 11px; 
+    margin-bottom: 1px; 
+    /* border-bottom: 1px solid black; */
+    color: #fff;
+}
+.imgInPost{
+    border-top: 2px solid rgb(50,50,50);
+    border-bottom: 2px solid rgb(50,50,50);
+
+    /* border-radius: 10px; */
+    max-height: 600px;
+    background-position: center;
+    background-size: cover;
+}
+.caption{
+    color: #fff;
+    font-size: 13px; 
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgb(50,50,50);
+}
+.highlighter{
+    color: chocolate;
+}
+.likesCount{
+    color: #fff;
+}
+.commentsCount{
+    color: #fff;
+}
+.nameInPost{
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    margin-bottom: 0;
+    
+}
+.nameImage{
+    cursor: pointer;
+}
+.nameImage:hover .nameInPost{
+    color: #a7a7a7;
+}
+.nameImage:active .nameInPost{
+    color: #20d16f;
+    -webkit-tap-highlight-color: transparent;
+}
+.commentsField{
+    background-color: black;
+    border: 2px solid red;
+    border-radius: 20px;
+}
+.commentList{
+    background-color: rgb(18,18,18); padding: 20px; border-radius: 5px; margin-bottom: 4px;
+}
+.venomCommentContainer ul{
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.venomCommentContainer ul::-webkit-scrollbar { 
+    /* display: none; */
+    width: 2px;
+
+}
+
+.dropdown-item:hover{
+    background-color: rgb(50,50,50);
+}
+.dropdown-menu{
+    /* left: 10px!important; */
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+
+
+}

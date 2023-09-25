@@ -1,0 +1,450 @@
+#containerForForm{
+    width: 900px;
+    height: 545px;
+    /* background: hsla(0, 0%, 100%, 0.55); */
+    /* background: rgba(255, 255, 255, 0.1); */
+    border-radius: 30px;
+    /* box-shadow: 0 0 20px rgba(232, 133, 11, 0.838); */
+    /* box-shadow: 5px 5px 30px black; */
+
+    /* backdrop-filter: blur(6px); */
+    /* -webkit-backdrop-filter: blur(6px); */
+    
+    background-color: rgba(17, 25, 40, 0.75);
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+
+    
+    margin: 0;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: flex;
+}
+#imgInForm{
+    width: 40%;
+    height: auto;
+}
+#originalFormContainer{
+    width: 90%;
+    height: auto;
+    /* background-color: black; */
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+#originalForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 100%;
+}
+#originalForm input{
+    border: none;
+    border-bottom: solid aliceblue 1px;
+    border-radius: 3px;
+
+    margin-bottom: 30px;
+
+    background: none;
+    color: aliceblue;
+
+    height: 35px;
+    width: 300px;
+}
+input::placeholder {
+    color: rgba(240, 248, 255,0.8);
+}
+/* button {
+font-family: monospace;
+font-size: 1rem;
+color: #FAFAFA;
+text-transform: uppercase;
+padding: 10px 20px;
+border-radius: 10px;
+border: 2px solid #FAFAFA;
+background: #252525;
+box-shadow: 3px 3px #fafafa;
+cursor: pointer;
+margin: 20px 0;
+}
+
+button:active {
+box-shadow: none;
+transform: translate(3px, 3px);
+} */
+
+.btn {
+--border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+--border-width: .125em;
+--curve-size: .5em;
+--blur: 30px;
+--bg: #080312;
+--color: #afffff;
+color: var(--color);
+/* use position: relative; so that BG is only for .btn */
+position: relative;
+isolation: isolate;
+display: inline-grid;
+place-content: center;
+padding: .5em 1.5em;
+font-size: 17px;
+border: 0;
+text-transform: uppercase;
+box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+clip-path: polygon(
+        /* Top-left */
+        0% var(--curve-size),
+
+        var(--curve-size) 0,
+        /* top-right */
+        100% 0,
+        100% calc(100% - var(--curve-size)),
+
+        /* bottom-right 1 */
+        calc(100% - var(--curve-size)) 100%,
+        /* bottom-right 2 */
+        0 100%);
+transition: color 250ms;
+}
+
+.btn::after,
+.btn::before {
+content: '';
+position: absolute;
+inset: 0;
+}
+
+.btn::before {
+background: var(--border-color);
+background-size: 300% 300%;
+animation: move-bg7234 5s ease infinite;
+z-index: -2;
+}
+
+@keyframes move-bg7234 {
+0% {
+background-position: 31% 0%
+}
+
+50% {
+background-position: 70% 100%
+}
+
+100% {
+background-position: 31% 0%
+}
+}
+
+.btn::after {
+background: var(--bg);
+z-index: -1;
+clip-path: polygon(
+        /* Top-left */
+        var(--border-width) 
+        calc(var(--curve-size) + var(--border-width) * .5),
+
+        calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+        /* top-right */
+        calc(100% - var(--border-width)) 
+        var(--border-width),
+
+        calc(100% - var(--border-width)) 
+        calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+        /* bottom-right 1 */
+        calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+        /* bottom-right 2 */
+        var(--border-width) calc(100% - var(--border-width)));
+transition: clip-path 500ms;
+}
+
+
+
+.btn:focus{
+color: #fff;
+}
+.btn:hover{
+color: #fff;
+}
+.btn:active {
+color: #fff;
+box-shadow: none;
+transform: translate(3px, 3px);
+}
+.error-text {
+    color: #ff0000;
+    font-weight: 400;
+}
+.container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 10px;
+margin-top: 10px;
+}
+
+.line {
+flex-grow: 1;
+height: 1px;
+background-color: aliceblue;
+}
+
+.or {
+font-weight: bold;
+color: aliceblue;
+}
+
+#downResto{
+display: flex; 
+justify-content: space-around; 
+width: 80%; 
+align-items: center; 
+margin-top: 20px;
+}
+.buttonG {
+max-width: 320px;
+display: flex;
+padding: 0.5rem 1.4rem;
+font-size: 0.875rem;
+line-height: 1.25rem;
+font-weight: 700;
+text-align: center;
+text-transform: uppercase;
+vertical-align: middle;
+align-items: center;
+border-radius: 0.5rem;
+border: 1px solid rgba(0, 0, 0, 0.25);
+gap: 0.75rem;
+color: rgb(65, 63, 63);
+background-color: #fff;
+cursor: pointer;
+transition: all .6s ease;
+}
+
+.buttonG svg {
+height: 24px;
+}
+
+.buttonG:hover {
+transform: scale(1.02);
+}
+#buttonsLogin{
+display: flex;
+justify-content: space-around;
+width: 100%; 
+margin-top: 20px;
+}
+.first-letter{
+font-size: 40px;
+/* line-height: 40px; */
+font-family: 'Times New Roman', Times, serif;
+/* text-decoration: underline;
+text-decoration-thickness: 1px;
+text-decoration-color:aliceblue; */
+/* border-bottom: 2px solid #ff7e05; */
+/* padding-bottom: 3px; */
+/* text-shadow: 4px 2px rgb(255, 115, 0); */
+}
+.toggle-password {
+position: absolute;
+top: 25%;
+right: 10px;
+transform: translateY(-50%); 
+padding: 10px;
+cursor: pointer;
+color: white;
+}
+.toggle-password-confirm{
+position: absolute;
+top: 25%;
+right: 10px;
+transform: translateY(-50%); 
+padding: 10px;
+cursor: pointer;
+color: white;
+}
+#otpForm input{
+/* border: none; */
+border: solid aliceblue 1px;
+border-radius: 3px;
+
+margin-bottom: 30px;
+
+background: none;
+color: aliceblue;
+
+height: 35px;
+width: 150px;
+}
+
+:where(.containerForOtp, .otpForm, .input-field) {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.containerForOtp {
+background: #fff;
+padding: 20px;
+border-radius: 12px;
+row-gap: 20px;
+box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+width: 250px;
+margin: auto;
+margin-top: 150px;
+
+}
+.containerForOtp span {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 65px;
+width: 65px;
+background: #269824;
+color: #fff;
+font-size: 2.5rem;
+border-radius: 50%;
+}
+.containerForOtp h4 {
+font-size: 0.75rem;
+color: #333;
+font-weight: 500;
+}
+.otpForm .input-field {
+flex-direction: row;
+column-gap: 10px;
+}
+.input-field input {
+height: 45px;
+width: 42px;
+border-radius: 6px;
+outline: none;
+font-size: 1.125rem;
+text-align: center;
+border: 1px solid #1e1d1d;
+}
+.input-field input:focus {
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.input-field input::-webkit-inner-spin-button,
+.input-field input::-webkit-outer-spin-button {
+display: none;
+}
+.otpForm button {
+margin-top: 25px;
+width: 100%;
+color: #fff;
+font-size: 1rem;
+border: none;
+padding: 9px 0;
+cursor: pointer;
+border-radius: 6px;
+pointer-events: none;
+background: #269824b0;
+transition: all 0.2s ease;
+}
+.otpForm button.active {
+background: #269824;
+pointer-events: auto;
+}
+.otpForm button:hover {
+background: #269824b0;
+}
+@media(max-width:950px){
+#imgInForm{
+    display: none;
+}
+#containerForForm{
+    justify-content: center;
+    width: 550px;
+}
+}
+@media(min-width:840px){
+.flash-success {
+background: rgba(0, 0, 0, 0.804);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border-bottom-width: 1px;
+}
+.flash-warning{
+/* background: rgba(255, 255, 255, 0.1); */
+/* backdrop-filter: blur(50px); */
+  /* -webkit-backdrop-filter: blur(50px); */
+background: rgba(0, 0, 0, 0.804);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+border-bottom-width: 1px;
+}
+}
+@media(max-width:600px){
+#containerForForm{
+    /* justify-content: center; */
+    width: 450px;
+}
+#downResto{
+    width: 100%;
+}
+}
+@media(max-width:500px){
+#containerForForm{
+    width: 90%;
+}
+#originalFormContainer{
+    width: 100%;
+}
+#originalForm input{
+    width: 250px;
+}
+.btn {
+    padding: 0.35em 1.15em;
+    font-size: 15px;
+}
+.buttonG {
+    max-width: 220px;
+    font-size: 0.675rem;
+}
+.buttonG svg {
+    height: 20px;
+    width: 20px;
+}
+}
+@media(max-width:450px){
+/* #containerForForm{
+    width: 350px;
+} */
+}
+@media(max-width:400px){
+#containerForForm{
+    width: 92%;
+}
+}
+
+
+@media(max-height:600px){
+#containerForForm{
+    margin-top: 25px;
+}
+.video-container{
+    height: 125%;
+}
+}
+@media(max-height:550px){
+#containerForForm{
+    margin-top: 50px;
+}
+}
+@media(max-height:500px){
+#containerForForm{
+    margin-top: 100px;
+}
+.video-container{
+    height: 140%;
+}
+}

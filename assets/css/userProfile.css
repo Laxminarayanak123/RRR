@@ -1,0 +1,685 @@
+/* for cover photo */
+#popup-container3 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: none;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  #popup-form3 {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 0 20px #8DB6EF;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+	/* width: 50%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    padding: 10px;
+	width: 500px;
+	height: 400px;
+	position: relative;
+	/* overflow-y: scroll; */
+	z-index: 9999;
+  }
+  
+  #popup-form3 label {
+	display: block;
+	margin-bottom: 10px;
+  }
+  
+  #popup-form3 input,
+  #popup-form3 textarea {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+  }
+  
+  #popup-form3 button[type="submit"] {
+	/* background-color: #007bff; */
+	/* color: white; */
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  #close-popup3 {
+	/* background-color: #dc3545; */
+	color: #c82333;
+	/* border: none; */
+	padding: 10px 20px;
+	/* border-radius: 5px; */
+	cursor: pointer;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	right: 1;
+  }
+  
+  #close-popup3:hover {
+	/* background-color: #c82333; */
+	cursor: pointer;
+	color: #c40f21;
+  }
+
+  /* for edit form */
+  #popup-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: none;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  #popup-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 0 20px #d926d9;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+	/* width: 50%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    padding: 30px;
+	width: 500px;
+	height: 450px;
+	position: relative;
+	/* overflow-y: scroll; */
+	z-index: 9999;
+  }
+  
+  #popup-form label {
+	display: block;
+	margin-bottom: 10px;
+  }
+  
+  #popup-form input,
+  #popup-form textarea {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+  }
+  
+  #popup-form button[type="submit"] {
+	/* background-color: #007bff; */
+	/* color: white; */
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+/*   
+  #popup-form button[type="submit"]:hover {
+	background-color: #0069d9;
+  } */
+  
+  #close-popup {
+	/* background-color: #dc3545; */
+	color: #c82333;
+	/* border: none; */
+	padding: 10px 20px;
+	/* border-radius: 5px; */
+	cursor: pointer;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	right: 1;
+  }
+  
+  #close-popup:hover {
+	/* background-color: #c82333; */
+	cursor: pointer;
+	color: #c40f21;
+  }
+
+
+
+    #userProfile{
+        width: 760px; 
+        margin: auto; 
+        margin-top: 90px; 
+        /* background-color: aliceblue; */
+        border: 1px solid aliceblue;
+        border-radius: 20px;
+        margin-bottom: 100px;
+    }
+    #userImg{
+        width: 100%;
+        display: flex; 
+        justify-content: center; 
+        margin-top: -80px;
+    }
+    #userDetails{
+        margin-top: 20px; 
+        text-align: center;
+    }
+    #userName{
+        color: #455a64; 
+        font-family: sans-serif; 
+        font-weight: 400;            
+        font-size: 1.3rem;
+    }
+    #belowInfo{
+        display: flex; 
+        justify-content: space-around;  
+        margin-top: 10px; 
+        margin-bottom: 10px; 
+        padding-bottom: 20px;
+    }
+    .eachItem{
+        display: flex; 
+        flex-direction: column;  
+        text-align: center;
+        width: 100px;
+    }
+    .whiteText{
+        color: aliceblue;
+    }
+    .scores{
+        color: #455a64; 
+        font-family: sans-serif; 
+        font-weight: 400;  
+        font-size: 21px;
+    }
+    #coverImg{
+        width: 100%; 
+        height: 300px;
+        border: 1px solid transparent;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    #profileImg{
+        width: 160px; 
+        height: 160px; 
+        border: 3px solid rgb(43, 214, 226); 
+        border-radius: 100%;
+    }
+    .fade-in-element {
+      opacity: 0; /* Start with element invisible */
+      animation: fadeIn 0.4s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+      0%{
+        opacity: 0.5;
+        transform: translateY(-30px);        
+      }
+      100%{
+        opacity: 1; 
+        transform:none;        
+
+      }
+    }
+
+    #followContainer{
+      background-color: rgb(38,38,38);
+      width: 400px;
+    }
+    #followBody{
+      height: 300px;
+      overflow-y: auto;     
+    }
+    .imageInFollow{
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      margin-right: 15px;
+      margin-left: 5px;
+    }
+    .eachElementInFollow{
+      width: 100%; 
+      height: 50px; 
+      display: flex;
+      align-items: baseline;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      /* padding-bottom: 5px;
+      border-bottom: 1px solid rgb(78, 78, 78); */
+      cursor: pointer;
+    }
+    @media(max-width:800px){
+        #userProfile{
+            width: 600px;
+        }
+    }
+    @media(max-width:650px){
+        #userProfile{
+            width: 450px;
+        }
+        #coverImg{
+            height: 250px;
+        }
+        #profileImg{
+            width: 140px;
+            height: 140px;
+        }
+        #userImg{
+            margin-top: -60px;
+        }
+        #popup-form3{
+            width: 400px;
+            height: 380px;
+        }
+        #popup-form{
+            width: 400px;
+            /* height: 380px; */
+        }
+    }
+    @media(max-width:500px){
+        #userProfile{
+            width: 375px;
+        }
+        #coverImg{
+            height: 200px;
+        }
+        #profileImg{
+            width: 128px;
+            height: 128px;
+        }
+        #userImg{
+            margin-top: -50px;
+        }
+        #popup-form3{
+            width: 350px;
+            height: 380px;
+        }
+        #popup-form{
+            width: 350px;
+            /* height: 380px; */
+        }
+        #username{
+          font-size: 1rem;
+        }
+    }
+    @media(max-width:420px){
+        #userProfile{
+            width: 330px;
+        }
+        #coverImg{
+            height: 175px;
+        }
+        #profileImg{
+            width: 100px;
+            height: 100px;
+        }
+        #userImg{
+            margin-top: -40px;
+        }
+        #popup-form3{
+            width:85%;
+            height: 380px;
+        }
+        #popup-form{
+            width:85%;
+            /* height: 380px; */
+        }
+    }
+    @media(max-width:380px){
+        #userProfile{
+            width: 275px;
+        }
+        #coverImg{
+            height: 150px;
+        }
+        #profileImg{
+            width: 85px;
+            height: 85px;
+        }
+        #userImg{
+            margin-top: -35px;
+        }
+    }
+    @media(max-width:310px){
+        #userProfile{
+            width: 250px;
+        }
+        #coverImg{
+            height: 125px;
+        }
+        #profileImg{
+            width: 60px;
+            height: 60px;
+        }
+        #userImg{
+            margin-top: -40px;
+        }
+    }
+    @media(min-width:800px){
+        #coverImg{
+            height: 350px;
+        }
+    }
+#venom {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#venom li{
+    /* margin-left: 20px; */
+    margin-right: 20px;
+}
+#userProfileImgSizing{
+    max-height: 350px;
+    min-height: 350px;
+}
+#venom .caption{
+    max-height: 51px;
+	overflow-y: scroll;
+
+    /* display: none; */
+}
+#venom .caption::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+.upperForUserPage{
+    min-height: 35px;
+}
+    /* style for cover photo form */
+.formText{
+    color: aliceblue;
+}
+
+  
+  
+    .button1 {
+        border: none; 
+        border-radius: 50px; 
+        background-color: cyan; 
+        color: crimson; 
+        width: 117px; 
+        height: 46px; 
+
+
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        /* background-color: #ffffff;  */
+        animation: button-border-move 2s infinite;
+    }
+
+@keyframes button-border-move {
+  0% {
+    box-shadow: 0 0 0 0 transparent; /* Initial box shadow */
+  }
+  50% {
+    box-shadow: 0 0 0 5px #ff0000; /* Box shadow color and size at midpoint */
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent; /* Box shadow reset */
+  }
+}
+
+#popup-container5 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: none;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  #popup-form5 {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 0 20px #EE77C0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+	/* width: 50%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    padding: 30px;
+	width: 500px;
+	height: 450px;
+	position: relative;
+	/* overflow-y: scroll; */
+	z-index: 9999;
+  }
+  
+  #popup-form5 label {
+	display: block;
+	margin-bottom: 10px;
+  }
+  
+  #popup-form5 input,
+  #popup-form5 textarea {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+  }
+  
+  #popup-form5 button[type="submit"] {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  #popup-form5 button[type="submit"]:hover {
+	background-color: #0069d9;
+  }
+  
+  #close-popup5 {
+	/* background-color: #dc3545; */
+	color: #c82333;
+	/* border: none; */
+	padding: 10px 20px;
+	/* border-radius: 5px; */
+	cursor: pointer;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	right: 1;
+  }
+  
+  #close-popup5:hover {
+	/* background-color: #c82333; */
+	cursor: pointer;
+	color: #c40f21;
+  }
+
+  /* for List of hotels */
+  #popup-container6 {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: none;
+	justify-content: center;
+	align-items: center;
+  }
+  
+  #popup-form6 {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    box-shadow: 0 0 20px #EE77C0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+	/* width: 50%;
+	background-color: white;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+    padding: 30px;
+	width: 500px;
+	height: 450px;
+	position: relative;
+	/* overflow-y: scroll; */
+	z-index: 9999;
+  }
+  
+  #popup-form6 label {
+	display: block;
+	margin-bottom: 10px;
+  }
+  
+  #popup-form6 input,
+  #popup-form6 textarea {
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+  }
+  
+  #popup-form6 button[type="submit"] {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+  }
+  
+  #popup-form6 button[type="submit"]:hover {
+	background-color: #0069d9;
+  }
+  
+  #close-popup6 {
+	/* background-color: #dc3545; */
+	color: #c82333;
+	/* border: none; */
+	padding: 10px 20px;
+	/* border-radius: 5px; */
+	cursor: pointer;
+	font-size: 30px;
+	position: absolute;
+	top: 0;
+	right: 1;
+  }
+  
+  #close-popup6:hover {
+	/* background-color: #c82333; */
+	cursor: pointer;
+	color: #c40f21;
+  }
+
+  /* styles for userModal */
+	.user-container {
+		display: flex;
+		flex-direction: column;
+		/* flex-wrap: wrap; */
+		justify-content: space-between;
+		max-height: 300px;
+		overflow-y: scroll;
+	}
+	.user-container::-webkit-scrollbar{
+		display: none;
+	}
+	.user-card {
+		display: flex;
+		align-items: center;
+		color: aliceblue;
+		width: 300px;
+		padding: 10px;
+		margin: auto;	
+		margin-top: 10px;
+		margin-bottom: 10px;
+		background-color: rgba(255, 255, 255, 0.1);
+		box-shadow: 0 10px 20px rgb(5, 241, 241);
+		border-radius: 5px;
+		transition: transform 0.3s, box-shadow 0.3s;
+		cursor: pointer;
+	  }
+	  
+	  .user-card:hover {
+		transform: scale(1.05);
+		/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+		box-shadow: 0 0 20px #ff019e;
+
+	  }
+	  
+	  .user-image {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		margin-right: 20px;
+	  }
+	  
+	  .user-name {
+		margin: 0;
+		font-size: 15px;
+	  }
+    input{
+      background-color: rgba(0, 0, 0, 0.5);
+		  color: aliceblue;
+      border: 1px solid aliceblue;
+    }
+    input::placeholder{
+      position: relative;
+      left: 10;
+      font-size: 13px;
+    }
+	@media(max-width:600px) {
+        #popup-form5{
+			width: 85%;
+			height: 400px;
+			padding: 30px 0;
+		}
+		#popup-form6{
+			width: 85%;
+			height: 400px;
+			padding: 30px 0;
+		}
+		.user-container{
+			max-height: 250px;
+			/* width: 100%; */
+		}
+		.user-card{
+			width: 250px;
+		}
+		.user-image{
+			width: 32px;
+			height: 32px;
+		}
+		.user-name{
+			font-size: 14px;
+		}
+		.someRandomClass{
+			font-size: 16px;
+		}
+    #userProfileImgSizing{
+      max-height: auto;
+      min-height: auto;
+      }
+    }
+	@media(max-width:440px){
+        #popup-form5{
+			height: 375px;
+		}
+		#popup-form6{
+			height: 375px;
+		}
+    
+    }
+	@media(max-width:400px){
+        .user-card{
+			width: 225px;
+		}
+    }
