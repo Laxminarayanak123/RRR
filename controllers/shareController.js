@@ -46,6 +46,7 @@ module.exports.Share = async function(req,res){
             post:sharedPost,
             typeOfUser:typeOfUser,
             userId:req.user.id,
+            message: await req.flash('message') ,
         })
 
     }
