@@ -16,6 +16,17 @@ module.exports.commentController = async function(req,res){
         
     }
 
+    let postData = await post.findById(req.body.post_id);
+    if(postData==null){
+        if(req.xhr){
+            await req.flash('message', [
+                { type: 'flash-warning', text: "Post Unavailable !" },
+              ]);
+            // return res.redirect('back');
+            return res.status(404).json({redirectUrl: '/' })
+        }
+    }
+
     let commentData = await comment.create({
         user:req.user.id,
         content:req.body.content,
@@ -32,7 +43,6 @@ module.exports.commentController = async function(req,res){
 
     });
 
-    let postData = await post.findById(req.body.post_id);
 
     await commentData.upVotes.push(upvote.id);
 
@@ -110,10 +120,14 @@ module.exports.deleteComment = async function(req,res){
 
 
         if(!commentData){
-
-            return res.status(401).json({
-                deleted:false
-            })
+            await req.flash('message', [
+                { type: 'flash-warning', text: "Comment Not Found" },
+              ]);
+            // return res.redirect('back');
+            return res.status(404).json({redirectUrl: '/' })
+            // return res.status(401).json({
+            //     deleted:false
+            // })
 
         }
 

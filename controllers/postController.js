@@ -119,42 +119,50 @@ module.exports.deletePost = async function(req,res,next){
         select:'id'
     });
     
+    if(post){
+        // console.log("in this", req.user.id,post.user.id,req.user.isAdmin);
+        if(req.user.id == post.user.id || req.user.isAdmin){
     
-    // console.log("in this", req.user.id,post.user.id,req.user.isAdmin);
-    if(req.user.id == post.user.id || req.user.isAdmin){
-    
-        let commentData = post.comments;
-        
-        if (commentData.length > 0){
-            for (const comment of commentData){
-                await upVote.deleteOne({votable:comment._id});
-                await Comment.deleteOne({id:comment._id});
+            let commentData = post.comments;
+            
+            if (commentData.length > 0){
+                for (const comment of commentData){
+                    await upVote.deleteOne({votable:comment._id});
+                    await Comment.deleteOne({id:comment._id});
+                }
             }
+        
+            await PostUser.posts.pull(req.params.pID);
+        
+            await upVote.deleteMany({votable:req.params.pID});
+        
+            // unlink the image
+            const oldProfilePath = path.join(__dirname,'../',post.picturePath);
+            fs.unlinkSync(oldProfilePath);
+    
+            await post.remove();
+        
+        
+            await PostUser.save();
+            await req.flash('message', [
+                { type: 'flash-warning', text: 'Post Deleted' },
+              ]);
+            return res.redirect('back');
         }
-    
-        await PostUser.posts.pull(req.params.pID);
-    
-        await upVote.deleteMany({votable:req.params.pID});
-    
-        // unlink the image
-        const oldProfilePath = path.join(__dirname,'../',post.picturePath);
-        fs.unlinkSync(oldProfilePath);
-
-        await post.remove();
-    
-    
-        await PostUser.save();
-        await req.flash('message', [
-            { type: 'flash-warning', text: 'Post Deleted' },
-          ]);
-        return res.redirect('back');
+        else{
+            await req.flash('message', [
+                { type: 'flash-warning', text: "Can't delete" },
+              ]);
+            return res.redirect('back');
+        }
     }
     else{
         await req.flash('message', [
-            { type: 'flash-warning', text: "Can't delete" },
+            { type: 'flash-warning', text: "Post Unavailable" },
           ]);
         return res.redirect('back');
     }
+    
 
 }
 
@@ -162,6 +170,12 @@ module.exports.download = async function(req,res){
     const postId = req.params.id;
 
     const currentPost =  await Post.findById(postId);
+    if(currentPost==null){
+        await req.flash('message', [
+            { type: 'flash-warning', text: "Post Unavailable !" },
+          ]);
+          return res.redirect('back');
+    }
 
     const imgPath = path.join(__dirname,'../',currentPost.picturePath);
     const outputPath = path.join(__dirname,'../uploads/buffer/');
@@ -188,6 +202,9 @@ module.exports.download = async function(req,res){
     const downloadFilePath =path.join(__dirname,'../uploads/buffer/',uniqueFilename);
 
     // console.log(downloadFilePath);
+    // await req.flash('message', [
+    //     { type: 'flash-success', text: 'Download Success' },
+    //   ]);
     await res.download(downloadFilePath, (err) => {
         if (err) {
           console.error('Error downloading image:', err);

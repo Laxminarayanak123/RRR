@@ -345,7 +345,9 @@ module.exports.editProfile =async(req,res)=>{
         
     });
    
-    await req.flash('message', 'Edit SuccessFull');
+    await req.flash('message', [
+        { type: 'flash-success', text: 'Edit SuccessFull' },
+      ]);
 
     return res.redirect('back');
 }
@@ -428,7 +430,9 @@ module.exports.coverPic =async(req,res)=>{
   
       user.coverPic = req.file.filename;
       await user.save();
-      await req.flash('message', 'Cover Pic Changed ');
+      await req.flash('message', [
+        { type: 'flash-success', text: 'Cover Pic Changed ' },
+      ]);
       return res.redirect('back');
     })
   }
@@ -442,7 +446,9 @@ module.exports.coverPic =async(req,res)=>{
       }
        user.coverPic = "";
        await user.save();
-       await  req.flash('message', 'Back to Default Pic ');
+       await  req.flash('message', [
+        { type: 'flash-success', text: 'Back to Default Pic ' },
+      ]);
       return res.redirect('back');
        
   

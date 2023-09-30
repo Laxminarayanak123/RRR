@@ -21,7 +21,22 @@ module.exports.upVoteController = async function(req,res){
 
         postORcom = await Comment.findById(req.params.id);
     }
-
+    if(postORcom==null){
+        if(req.xhr){
+            if(req.query.type == 'Post'){
+                await req.flash('message', [
+                    { type: 'flash-warning', text: "Post Unavailable !" },
+                  ]);
+            }
+            else{
+                await req.flash('message', [
+                    { type: 'flash-warning', text: "Comment Not Found" },
+                  ]);
+            }
+            // return res.redirect('back');
+            return res.status(404).json({redirectUrl: '/user/signUp' })
+        }
+    }
     const user_type = req.query.type1;
     if(user_type=="User"){
         // var post_User = await User.findById(req.user._id);

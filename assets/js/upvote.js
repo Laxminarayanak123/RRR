@@ -60,6 +60,11 @@ class upVoteClass {
                     $(`#${this.type}Container-${this.id}`).remove();
                     this.postORCommentForm.append(upVoteDOMtemplate);
 
+                },
+                error:(data)=>{
+                    // console.log(data.redirectUrl);
+                    // window.location.href = data.redirectUrl;
+                    window.location.reload(); 
                 }
             })
 

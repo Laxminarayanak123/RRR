@@ -64,7 +64,7 @@ class deleteComment{
                 error: (err) => {
 
                     console.log(err);
-
+                    window.location.reload(); 
                 }
 
             });

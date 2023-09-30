@@ -74,6 +74,7 @@ class commentDOMClass {
                 },
                 error: (err)=>{
                     console.log(err.responseText);
+                    window.location.reload(); 
                 }
                 
             })

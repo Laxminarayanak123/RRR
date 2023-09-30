@@ -33,7 +33,7 @@
             </div>
                 
             <div id="signOutHeader">
-                <a  href="/<%=typeOfUser%>/signOut"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket"></i></a>
+                <a  data-toggle="modal" data-target="#exampleModalLogout" href="#"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket"></i></a>
             </div>
             
 
@@ -41,7 +41,32 @@
         </div>
         
         
-
+        <div class="modal fade-in-element" id="exampleModalLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+              <div class="modal-content" id="LogoutContainer">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: #ff5454; font-family: serif; letter-spacing: 3px;">Logout</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef;">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" id="LogoutBody" style="color:aliceblue">
+                  <div style="text-align: center;">
+                    <p>Click here to Logout</p>
+                  </div>
+                  <div style="text-align: center;">
+                    <button class="btn-class-name" onclick="location.href='/<%=typeOfUser%>/signOut'">
+                        <span class="back"></span>
+                        <span class="front"></span>
+                    </button>
+                  </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+              </div>
+            </div>
+          </div>
     <%}%>
 
     

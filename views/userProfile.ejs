@@ -1,7 +1,7 @@
 <% if (message != '') { %>
-    <div class="flash flash-success fade">
+    <div class="flash <%= message[0].type %> fade">
         <p>
-            <%= message %>
+            <%= message[0].text %>
         </p>
     </div>
 <% } %>
