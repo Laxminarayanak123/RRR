@@ -142,7 +142,7 @@ async function mailerExp(type,toUser,otp) {
 
       const job = queue.create('email', {
         to: 'laxminarayana.koyyana1@gmail.com',
-        subject: 'Restaurant Reviews and Ratings',
+        subject: 'This is the testing promotional mail.. ignore this please!',
         html: emailBody
       }).delay(5000).priority('high').save();  
     } 

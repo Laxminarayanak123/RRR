@@ -15,83 +15,89 @@ const authenticateAdmin = require('../config/jwtMiddleware');
 
 module.exports.PostConroller = async function(req,res){
 
-    Post.uploadPicture(req,res,async function(err){
+    try {
+       Post.uploadPicture(req,res,async function(err){
 
-        // console.log(req.user);
-        if(err){
-            console.error(err);
-        }
-        const user_type = req.query.type;
-
-        var hotelName ;
-        var menuModel ;
-
-        if(user_type=="User"){
-            hotelName = req.body.hotel;
-            menuModel = req.body.menuItem;
-        }
-        console.log("----------------------------------");
-        let presentPost = await Post.create({
-            user:req.user._id,
-            content:req.body.content,
-            picturePath:Post.picPath + "/"+req.file.filename,
-            upVotesCount:req.body.upVotesCount,
-            UserOrHotel:req.body.userType,
-            hotelName : hotelName,
-            menuModel : menuModel
-        });
-
-        
-
-        let post_User;
-
-        if(user_type=="User"){
-            
-            post_User = await User.findById(req.user._id);
-            
-            if(req.body.hotel){
-
-                const hotel = await Hotel.findById(req.body.hotel);
-
-                hotel.reviewPosts.push(presentPost.id);
-
-                await hotel.save();
-
+            // console.log(req.user);
+            if(err){
+                console.error(err);
+    
             }
-
-            post_User.posts.push(presentPost.id);             
-
-        }
-        else{
-
-            post_User = await Hotel.findById(req.user._id);
-
-            post_User.posts.push(presentPost.id);
+            const user_type = req.query.type;
+    
+            var hotelName ;
+            var menuModel ;
+    
+            if(user_type=="User"){
+                hotelName = req.body.hotel;
+                menuModel = req.body.menuItem;
+            }
+            console.log("----------------------------------");
+            let presentPost = await Post.create({
+                user:req.user._id,
+                content:req.body.content,
+                picturePath:Post.picPath + "/"+req.file.filename,
+                upVotesCount:req.body.upVotesCount,
+                UserOrHotel:req.body.userType,
+                hotelName : hotelName,
+                menuModel : menuModel
+            });
+    
             
-        }
+    
+            let post_User;
+    
+            if(user_type=="User"){
+                
+                post_User = await User.findById(req.user._id);
+                
+                if(req.body.hotel){
+    
+                    const hotel = await Hotel.findById(req.body.hotel);
+    
+                    hotel.reviewPosts.push(presentPost.id);
+    
+                    await hotel.save();
+    
+                }
+    
+                post_User.posts.push(presentPost.id);             
+    
+            }
+            else{
+    
+                post_User = await Hotel.findById(req.user._id);
+    
+                post_User.posts.push(presentPost.id);
+                
+            }
+            
+            let upvote = await upVote.create({
+                votable:presentPost.id,
+                postORcomment:"Post",
+                user : req.user.id,
+                upVoted:false,
+                UserOrHotel:req.body.userType
+            });
+    
+            presentPost.upVotes.push(upvote.id);
+    
+            await presentPost.save();
+    
+            await post_User.save();
+    
+            await req.flash('message', [
+                { type: 'flash-success', text: 'Post Created' },
+              ]);
         
-        let upvote = await upVote.create({
-            votable:presentPost.id,
-            postORcomment:"Post",
-            user : req.user.id,
-            upVoted:false,
-            UserOrHotel:req.body.userType
+            return res.redirect('/');
         });
+    } catch (error) {
+        console.log(error);
+    }
+    
 
-        presentPost.upVotes.push(upvote.id);
-
-        await presentPost.save();
-
-        await post_User.save();
-
- 
-    });
-
-    await req.flash('message', [
-        { type: 'flash-success', text: 'Post Created' },
-      ]);
-
-    return res.redirect('/');
+    
 }
 
 module.exports.deletePost = async function(req,res,next){

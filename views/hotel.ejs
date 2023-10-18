@@ -112,7 +112,7 @@
                         <form  action="/hotel/cover"  method="post" enctype="multipart/form-data">
                             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
                                     <label style="margin-bottom: 20px;"  class="formText" style="font-size: 12px; color: aliceblue;">Change cover photo</label>
-                                    <input type="file" name="cover" class="form-control" style="width: 90%; " placeholder="cover" value="" required>
+                                    <input type="file" name="cover" class="form-control" style="width: 90%; background-color: rgba(0,0,0,0.5); color: aliceblue;" placeholder="cover" value="" required>
                             </div>
                             <!-- <button type="submit" class="btn btn-light">Submit</button> -->
                             <div style="text-align: center;">
@@ -166,7 +166,7 @@
                     <div style="display: flex; flex-direction: column; " >
                         <div style="margin-bottom: 50px; margin-top: 30px;">
                             <label for="typeSelectColor" class="formText">Select a section to update color :</label>
-                            <select class="form-control" id="typeSelectColor" name="section" style="width: 80%;" onchange='updateColor()'>
+                            <select class="form-control" id="typeSelectColor" name="section" style="width: 80%; background-color: rgba(0,0,0,0.5); color: aliceblue;" onchange='updateColor()'>
                                 <option value=""> -- Select -- </option>
                                 <option value="0">About-Us </option>
                                 <option value="1">Menu</option>
@@ -283,7 +283,7 @@
 
                             <div>
                                 <label class="labels formText">Hotel Name :</label>
-                                <input type="text" name="name" class="form-control" maxlength="15" placeholder="first name" value="">
+                                <input type="text" name="name" class="form-control" maxlength="15" placeholder="Change Hotel Name" value="">
                             </div>
                             <!-- <div>
                                 <label class="labels formText">Email ID :</label>
@@ -319,10 +319,10 @@
                                 <label class="labels formText"> Phone :</label>
                                 <input  type="text" class="form-control" name="phone" maxlength="10" minlength="10"  placeholder="change your mobile no here!" value="">
                             </div>
-                            <div>
+                            <!-- <div>
                                 <label class="labels formText"> About-us :</label>
                                 <textarea style="border-radius: 10px;" type="text" class="form-control" name="about" cols="5" rows="5" maxlength="230"  placeholder="change paragraph in about us section " value=""></textarea>
-                            </div>
+                            </div> -->
                             <!-- <div style="text-align: center;">
                                 <button class="btn btn-primary profile-button" type="submit">Save Profile</button> 
                             </div> -->
@@ -416,11 +416,13 @@ else{
         <div style="z-index: 999999;" id="popup-container1">
             <div id="popup-form1">
                 <a  id="close-popup1">&times;</a> 
-                <div  class="container" style="margin-top: 20px; font-size: 13px;" >
+                <div id="form-toggle">
+                    <button id="collage-form-button" class="active">Collage</button>
+                    <button id="aboutUs-form-button">About-Us</button>
+                </div>
+                <hr style="color: #ae989a;">
+                <div id="collageForm" class="container" style="margin-top: 20px; font-size: 13px;" >
                     <form action="/hotel/collage"  method="post" enctype="multipart/form-data">
-                        <div style="text-align: center; font-size: 20px; margin-bottom: 20px; ">
-                            <p class="formText"  style="color: #ff913c; font-family: monospace;">--- Collage --- </p>
-                        </div>
                         <div class="form-group" style="margin-top: 40px; margin-bottom: 30px;">
                             <label for="typeSelect" style="color: aliceblue;" >Select a photo to update :</label>
                             <select class="form-control" id="typeSelect" name="Photo">
@@ -433,6 +435,29 @@ else{
                         <div >
                             <label class="labels" style="color: aliceblue;">File :</label>
                             <input type="file" name="collage" class="form-control" placeholder="collage" value="" required>
+                        </div>
+                        <!-- <button type="submit" class="btn btn-light">Submit</button> -->
+                        <div style="text-align: center;">
+                            <button type="submit" class="animated-button3">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                Submit
+                            </button>
+                        </div>
+
+                        <!-- <button type="submit">Submit</button> -->
+                    </form>
+
+                </div>
+
+                <div id="aboutUsForm" class="container" style="margin-top: 20px; font-size: 13px;" >
+                    <form id="editForm" action="/hotel/profile/update/<%=HotelProfile.id%>" method="POST"  autocomplete="off" enctype="multipart/form-data" >
+                    
+                        <div id="collageTextArea">
+                            <label class="labels formText"> About-us :</label>
+                            <textarea style="border-radius: 10px; background-color: rgba(0, 0, 0, 0.5);color: aliceblue;" type="text" class="form-control" name="about" cols="5" rows="5" maxlength="230"  placeholder="change paragraph in about us section " value=""></textarea>
                         </div>
                         <!-- <button type="submit" class="btn btn-light">Submit</button> -->
                         <div style="text-align: center;">
@@ -832,20 +857,20 @@ else{
         clearInterval(intervalId);
         currentIndex = (currentIndex - 1 + itemCount) % itemCount;
         showItem(currentIndex);
-        // intervalId = setInterval(showNextItem, 5000);
+        intervalId = setInterval(showNextItem, 5000);
     }
 
     function showNextItem() {
         clearInterval(intervalId);
         currentIndex = (currentIndex + 1) % itemCount;
         showItem(currentIndex);
-        // intervalId = setInterval(showNextItem, 5000);
+        intervalId = setInterval(showNextItem, 5000);
     }
 
     prevButton.addEventListener('click', showPrevItem);
     nextButton.addEventListener('click', showNextItem);
 
-    // intervalId = setInterval(showNextItem, 5000);
+    intervalId = setInterval(showNextItem, 5000);
     }
 
     runCarousel();
@@ -882,4 +907,9 @@ else{
 
     const paragraph1 = document.querySelector('.customers-paragraph');
     paragraph1.style.color = "<%=textColor2%>"
+
+    const aboutUsHeader = document.querySelector('.about-us-heading');
+    aboutUsHeader.style.webkitTextStroke = "<%=aboutUsColor%>";
+    aboutUsHeader.style.webkitTextStrokeWidth = "1px";
+
 </script>

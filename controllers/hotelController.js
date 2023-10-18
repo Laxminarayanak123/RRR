@@ -297,6 +297,9 @@ module.exports.userProfile = async function(req,res){
     }
     const textColor1 = tinycolor(backgroundColor1).isDark() ? '#fff' : '#000';
     
+    //for about-us heading
+    const aboutUsColor = tinycolor(backgroundColor1).isDark() ? '#FFD700' : '#000080';
+     
 
     var backgroundColor2 = profileUSerData.colors[2];
     if(!backgroundColor2){
@@ -323,6 +326,7 @@ module.exports.userProfile = async function(req,res){
         oneQuote:oneQuote,
         textColor1,
         textColor2,
+        aboutUsColor
     
     });
 
@@ -354,10 +358,10 @@ module.exports.editProfile =async(req,res)=>{
             nonEmptyObject.email = email
             if(req.file){
                 // removing previous file from folder
-                // if(user.avatar){
-                //     const oldProfilePath = path.join(__dirname,'../uploads/hotelProfile',user.avatar);
-                //     fs.unlinkSync(oldProfilePath);
-                // }
+                if(user.avatar){
+                    const oldProfilePath = path.join(__dirname,'../',user.avatar);
+                    fs.unlinkSync(oldProfilePath);
+                }
                 nonEmptyObject.avatar = Hotel.picPath+'/'+req.file.filename;
                 console.log(user);
             }
@@ -384,11 +388,12 @@ module.exports.editProfile =async(req,res)=>{
 
         }
         
+        await req.flash('message', [
+            { type: 'flash-success-hotel', text: 'Edit Successfull' },
+          ]);
+        return res.redirect('back');
     });
-    await req.flash('message', [
-        { type: 'flash-success-hotel', text: 'Edit Successfull' },
-      ]);
-    return res.redirect('back');
+    
 }
 
 
@@ -478,12 +483,12 @@ module.exports.collage = async(req,res)=>{
          await user.save();
 
          
-        
+         await req.flash('message', [
+            { type: 'flash-success-hotel', text: 'Collage Updated' },
+          ]);
+        return res.redirect('back');
     });
-    await req.flash('message', [
-        { type: 'flash-success-hotel', text: 'Collage Updated' },
-      ]);
-    return res.redirect('back');
+    
 
 }
 

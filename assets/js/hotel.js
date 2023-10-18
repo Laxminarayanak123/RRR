@@ -70,6 +70,32 @@ async function followHotel(value){
       popupContainer1.style.display = "none";
       });
 
+      const collageFormButton = document.getElementById("collage-form-button");
+      const aboutUsFormButton = document.getElementById("aboutUs-form-button");
+      const collageForm = document.getElementById("collageForm");
+      const aboutUsForm = document.getElementById("aboutUsForm");
+
+      // Set the cover photo form as the active form
+      collageFormButton.classList.add("active");
+      aboutUsForm.style.display = "none";
+
+      // Add click event listeners to the form toggle buttons
+      collageFormButton.addEventListener("click", () => {
+      collageFormButton.classList.add("active");
+      aboutUsFormButton.classList.remove("active");
+      collageForm.style.display = "block";
+      aboutUsForm.style.display = "none";
+      });
+
+      aboutUsFormButton.addEventListener("click", () => {
+      collageFormButton.classList.remove("active");
+      aboutUsFormButton.classList.add("active");
+      collageForm.style.display = "none";
+      aboutUsForm.style.display = "block";
+      });
+
+
+
       // for menu form
       const openPopupButton2 = document.getElementById("open-popup2");
       const closePopupButton2 = document.getElementById("close-popup2");

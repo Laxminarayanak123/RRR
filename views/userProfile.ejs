@@ -12,12 +12,12 @@
         <a  id="close-popup5">&times;</a> 
         <div  class="containerForUsers" style="margin-top: 15px;" >
             <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
-                <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- List of Users --- </p>
+                <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- Users in RRR --- </p>
             </div>
             <hr>
                 <div class="user-container">
                     <% for (var item1 of users){ %>
-                        <div class="user-card" >
+                        <div class="user-card" style="cursor: pointer;" onclick="location.href='/user/profile/<%=item1.id%>'">
                             <img src="<%=item1.avatar%>" alt="" class="user-image">
                             <h3 class="user-name"><%=item1.name%></h3>
                         </div>
@@ -35,12 +35,12 @@
     <a  id="close-popup6">&times;</a> 
     <div  class="containerForHotel" style="margin-top: 15px;" >
         <div style="text-align: center; font-size: 20px; margin-bottom: 25px; ">
-            <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- List of Hotels --- </p>
+            <p class="formText someRandomClass"  style="color: rgb(5, 241, 241); font-family: monospace;">--- Hotels in RRR --- </p>
         </div>
         <hr>
             <div class="user-container">
                 <% for (var item2 of  hotelNames){ %>
-                    <div class="user-card" >
+                    <div class="user-card" style="cursor: pointer;" onclick="location.href='/hotel/profile/<%=item2.id%>'">
                         <img src="<%=item2.avatar%>" alt="" class="user-image">
                         <h3 class="user-name"><%=item2.name%></h3>
                     </div>

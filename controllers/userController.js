@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const mailerExp = require('../config/mailer');
 const otpVerify = require('../model/otpVerify');
 const Districts = require('../model/districts');
+const loadash = require('lodash');
+
 
 
 // key for jwt secret
@@ -92,7 +94,6 @@ module.exports.createSession = async function(req,res){
     // jwt token
     if(req.user.isAdmin){
         const token = jwt.sign({ id:req.user.id,isAdmin: req.user.isAdmin }, jwtSecret, { expiresIn: '1h' });
-        console.log(token);
         res.cookie('auth',`Bearer ${token}`)
     }
     
@@ -254,9 +255,17 @@ module.exports.userProfile = async function(req,res){
 
 
     // populating user and hotels for footer
-    const HotelData = await Hotel.find({isVisible:{$ne:false}}).populate();
+    const HotelData = await Hotel.find(
+        {$and:[
+            {isVisible:{$ne:false}},
+            {district:{$ne:null}}
+        ]}
+    ).populate();
+    const ShuffleHotelData = loadash.shuffle(HotelData);
 
     const users = await User.find({}).populate();
+    const ShuffleUserData = loadash.shuffle(users);
+
 
     // console.log("in user controller",follow);
     return res.render('userProfile',{
@@ -269,8 +278,8 @@ module.exports.userProfile = async function(req,res){
         followbtn:followbtn,
         followers:follow.followers,
         following:follow.followings,
-        hotelNames: HotelData,
-        users:users,
+        hotelNames: ShuffleHotelData,
+        users:ShuffleUserData,
         message: await req.flash('message') ,
 
 
@@ -341,15 +350,16 @@ module.exports.editProfile =async(req,res)=>{
             const users = await User.findById(req.user.id);
             await user.save();
 
-        }
+            await req.flash('message', [
+                { type: 'flash-success', text: 'Edit SuccessFull' },
+              ]);
         
+            return res.redirect('back');
+        }
+       
     });
    
-    await req.flash('message', [
-        { type: 'flash-success', text: 'Edit SuccessFull' },
-      ]);
-
-    return res.redirect('back');
+    
 }
 
 module.exports.FollowOrUnfollow = async(req,res)=>{
