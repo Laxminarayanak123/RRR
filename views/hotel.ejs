@@ -65,7 +65,7 @@
             </div>
                 
             <div id="signOutHeader" >
-                <a  data-toggle="modal" data-target="#exampleModalLogout" href="#"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket hotelLogoutStyle"></i></a>
+                <a  data-toggle="modal" data-target="#exampleModalLogoutHotel" href="#"><i style="color: rgb(168,168,168);" id="SignOutInHeader" class="fa-solid fa-right-from-bracket hotelLogoutStyle"></i></a>
             </div>
             
 
@@ -518,7 +518,11 @@ else{
     <% } %>
     <div class="var-wrapper">
             <div class="carousel-container">
-
+                <div class="carousel-toggle">
+                    <button style="position: absolute;right: 15px;top: 20px; z-index: 10; border-radius: 20px; font-size: 15px; border: 3px solid #198754; background-color: #0000004f;" >
+                        <i class="fa fa-pause" style="color: green;"></i>
+                    </button>
+                </div>
                 <%console.log(HotelProfile.menuArray.length,"dsdsdsdsdsdsdsds");%>
                 <% if(HotelProfile.menuArray.length==0){%>
                     <div style="text-align: center; position: relative; top: 200px;">
@@ -825,6 +829,35 @@ else{
     </div>
   </div>
 
+  <!-- model for logout -->
+  <div class="modal fade-in-element" id="exampleModalLogoutHotel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="justify-content: center;">
+      <div class="modal-content" id="LogoutContainer">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle" style="text-align: center; color: #ff5454; font-family: serif; letter-spacing: 3px; font-size: 20px;">Logout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #e9ecef;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="LogoutBody" style="color:aliceblue">
+          <div style="text-align: center;">
+            <p class="logoutPara" style="font-size: 16px;">Click here to Logout !</p>
+          </div>
+          <div style="text-align: center;">
+            <button class="btn-class-name" onclick="location.href='/<%=typeOfUser%>/signOut'">
+                <span class="back"></span>
+                <span class="front"></span>
+            </button>
+          </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
 <!-- script for search -->
 <script src="/assets/js/searchForHotel.js"></script>
 
@@ -844,9 +877,11 @@ else{
     const items = container.querySelectorAll('.carousel-item');
     const prevButton = container.querySelector('.carousel-prev');
     const nextButton = container.querySelector('.carousel-next');
+    const toggleButton = container.querySelector('.carousel-toggle');
     const itemCount = items.length;
     let currentIndex = 0;
     let intervalId = null;
+    let isPaused = false;
 
     function showItem(index) {
         items.forEach(item => item.classList.remove('active'));
@@ -857,25 +892,46 @@ else{
         clearInterval(intervalId);
         currentIndex = (currentIndex - 1 + itemCount) % itemCount;
         showItem(currentIndex);
-        intervalId = setInterval(showNextItem, 5000);
+        if (!isPaused) {
+            intervalId = setInterval(showNextItem, 5000);
+        }
     }
 
     function showNextItem() {
         clearInterval(intervalId);
         currentIndex = (currentIndex + 1) % itemCount;
         showItem(currentIndex);
-        intervalId = setInterval(showNextItem, 5000);
+        if (!isPaused) {
+            intervalId = setInterval(showNextItem, 5000);
+        }
+    }
+
+    function toggleCarousel() {
+        if (isPaused) {
+            isPaused = false;
+            toggleButton.innerHTML = `<button style="position: absolute;right: 15px;top: 20px; z-index: 10; border-radius: 20px; font-size: 15px; border: 3px solid #198754; background-color: #0000004f;" >
+                        <i class="fa fa-pause" style="color: green;"></i>
+                    </button>`; // Change to pause icon
+            intervalId = setInterval(showNextItem, 5000);
+        } else {
+            isPaused = true;
+            toggleButton.innerHTML = `<button style="position: absolute;right: 15px;top: 20px; z-index: 10; border-radius: 20px; font-size: 15px; border: 3px solid #dc3545; background-color: #0000004f;" >
+                        <i class="fa fa-play" style="color: #ff172d;"></i>
+                    </button>`; // Change to play icon
+            clearInterval(intervalId);
+        }
     }
 
     prevButton.addEventListener('click', showPrevItem);
     nextButton.addEventListener('click', showNextItem);
+    toggleButton.addEventListener('click', toggleCarousel);
 
     intervalId = setInterval(showNextItem, 5000);
-    }
+}
+runCarousel();
 
-    runCarousel();
 
-    function updateColor() {
+function updateColor() {
         var select = document.getElementById("typeSelectColor");
         var input2 = document.getElementById('newColorInput');
 
@@ -898,7 +954,6 @@ else{
 
 
       }
-
 </script>
 
 <script>

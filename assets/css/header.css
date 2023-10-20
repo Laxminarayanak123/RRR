@@ -350,3 +350,19 @@ animation: fadeOutRight 4s forwards;
       }
   }
 
+  .fade-in-elementLogout {
+    opacity: 0; /* Start with element invisible */
+    animation: fadeInLogout 0.4s ease forwards;
+  }
+  
+  @keyframes fadeInLogout {
+    0%{
+      opacity: 0.5;
+      transform: translateY(-30px);        
+    }
+    100%{
+      opacity: 1; 
+      transform:none;        
+
+    }
+  }
