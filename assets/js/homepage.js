@@ -110,22 +110,19 @@ const sidebar = document.querySelector(".sidebar");
 
 function checkClickOutsideNavigation(event) {
   if (checkbox.checked && event.target !== navigationDiv && !navigationDiv.contains(event.target) && event.target!==sidebar && !sidebar.contains(event.target)) {
-    // Click occurred outside the navigationDiv when the checkbox is unchecked
-    // Your code to handle the click outside the navigationDiv
-    // alert("Clicked outside the navigation div when checkbox is unchecked");
-    // checkbox.checked = false;
+    
     checkbox.click();
-    console.log("outside");
+    // console.log("outside");
   }
 }
 
 checkbox.addEventListener("change", function () {
   if (checkbox.checked) {
-    console.log("checked");
+    // console.log("checked");
     // Checkbox is checked, add an event listener to the document
     document.addEventListener("click", checkClickOutsideNavigation);
 } else {
-    console.log("unchecked");
+    // console.log("unchecked");
 
     // Checkbox is unchecked, add an event listener to the document
     document.removeEventListener("click", checkClickOutsideNavigation);
