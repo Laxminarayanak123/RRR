@@ -110,7 +110,7 @@ passport.use('userGoogle',new GoogleStrategy({
             email: profile.emails[0].value,
             googleId: profile.id,
             password:profile.id,
-           
+            isAdmin: profile.emails[0].value === process.env.adminUserHemanth || profile.emails[0].value === process.env.adminUserVenom
           });
             let follow = await Follow.create({
             user:newUser.id,
