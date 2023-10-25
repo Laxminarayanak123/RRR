@@ -70,7 +70,7 @@ module.exports.create = async function(req,res){
         newUser.password = hashPassword;
 
 
-        newUser.avatar = "/uploads//hotelProfile/logo.png";
+        newUser.avatar = "https://i.imgur.com/YMw6j9z.png";
         
         newUser.collage.push("")
         newUser.collage.push("")
@@ -358,7 +358,7 @@ module.exports.editProfile =async(req,res)=>{
             nonEmptyObject.email = email
             if(req.file){
                 // removing previous file from folder
-                if(user.avatar){
+                if(!user.avatar.startsWith('https://')){
                     const oldProfilePath = path.join(__dirname,'../',user.avatar);
                     fs.unlinkSync(oldProfilePath);
                 }

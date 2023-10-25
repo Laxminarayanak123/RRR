@@ -121,7 +121,7 @@ else{
                             <div class="dropdown-item">
                                     <!-- <p>share</p> -->
                                     <button onclick="copyText(value)" value="<%=post.id%>"  style="border: none; background-color: transparent;  color: rgb(40, 90, 175); display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                                        <div style="font-family: cursive;">
+                                        <div style="font-family: serif;">
                                             Copy Link
                                         </div>
                                         <!-- <div style="display: none;">
@@ -137,7 +137,7 @@ else{
                                 <form action="/posts/download/<%=post.id%>" method="POST" style="margin-bottom: 0;">
 
                                     <button  type="submit" style="border: none; background-color: transparent;  color: green; display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                                        <div style="font-family: cursive;">
+                                        <div style="font-family: serif;">
                                             Download
                                         </div>
                                         <div>
@@ -152,7 +152,7 @@ else{
                                     <form action="/posts/delete/<%=post.user.id%>/<%=post.id%>/?type=<%=postUserType%>" method="POST" style="margin-bottom: 0;">
     
                                         <button  type="submit" style="border: none; background-color: transparent;  color: rgb(175, 40, 40); display: flex; justify-content: space-between; width: 100%; align-items: center;">
-                                            <div style="font-family: cursive;">
+                                            <div style="font-family: serif;">
                                                 Delete
                                             </div>
                                             <div>

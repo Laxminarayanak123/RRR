@@ -297,9 +297,11 @@ body{
 .banner-img {
     width: 70%;
     height: 70%;
-    background-size: cover;
+    /* background-size: contain;
     background-position: center;
+	background-repeat: no-repeat; */
 	/* border-radius: 50%; */
+	object-fit: contain;
     animation: biani 2.5s linear infinite alternate;
     box-shadow: 0 0px 20px rgba(10, 222, 233, 0.587);
 	
@@ -500,6 +502,7 @@ body{
 	/* box-shadow: 0 3rem 6rem rgba(0,0,0,1); */
 	border: 1px solid #b85d1c ;
 	border-radius: 10px;
+	object-fit: cover;
 	animation: imageShadow 10s ease-in-out infinite alternate;
 
 }
@@ -686,9 +689,9 @@ background: linear-gradient(to right, #434343, #000000);
 	width: 40rem;
 	height: 260px;
 	border-bottom: 1px solid rgb(0, 139, 139) ;
-	border-top-left-radius: 40px;
-	border-top-right-radius: 40px;
-
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	border-radius: 10px;
 }
 /* .imageteda{
 	background:linear-gradient(to right,rgba(0,0,0,0.4),rgba(0,0,0,.6));

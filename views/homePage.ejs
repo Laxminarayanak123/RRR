@@ -403,15 +403,8 @@
 
                     <!-- image for logo -->
             
-                    <% if (hotelNames[i].avatar) {
-
-                        var imageForLogo = "/uploads/hotelProfile/" + hotelNames[i].avatar.split('/').pop();
-                        <!-- console.log(imageForLogo) -->
-                    } else {
-                        var imageForLogo = "/uploads/hotelProfile/logo.png";
-                    } %>
                     <div class="logoInCarousel">
-                        <img src="<%=imageForLogo%>" width="65" height="65" alt="">
+                        <img src="<%=hotelNames[i].avatar%>" width="65" height="65" alt="" style="object-fit: contain;">
                     </div>
                     <span  class="nameInCarousel"  style="cursor: pointer;" onclick="location.href='/hotel/profile/<%=hotelNames[i].id%>'" >
                         <p><%=hotelNames[i].name%></p>

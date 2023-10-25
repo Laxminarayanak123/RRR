@@ -205,7 +205,7 @@ passport.use('hotelGoogle',new GoogleStrategy({
             // })
 
             // newUser.follow = follow;
-            newUser.avatar = "/uploads//hotelProfile/logo.png";
+            newUser.avatar = "https://i.imgur.com/YMw6j9z.png";
             
             newUser.collage.push("")
             newUser.collage.push("")

@@ -614,11 +614,12 @@ height: 100%;
 	.logoInCarousel{
 		overflow: hidden;
 		width: 65px;
-		border: 1px solid black;
+		border: 1px solid #e9ecef;
 		border-radius: 40%;
 		position: relative;
 		top: 150px;
-		left:175px	
+		left:175px;
+		background-color: #000000bf;
 	}
 
 	.nameInCarousel{

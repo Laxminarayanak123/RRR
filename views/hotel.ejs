@@ -254,17 +254,16 @@
         
         <!-- image for logo -->
         
-        <% if (HotelProfile.avatar) {
+        <% if (HotelProfile.avatar!="https://i.imgur.com/YMw6j9z.png") {
 
             var imageForLogo = "/uploads/hotelProfile/" + HotelProfile.avatar.split('/').pop();
             console.log(imageForLogo)
         } else {
-            var imageForLogo = "/uploads/hotelProfile/logo.png";
+            var imageForLogo = "https://i.imgur.com/YMw6j9z.png";
         } %>
 
         <div class="right-side">
-            <div class="banner-img" style="background-image: url('<%=imageForLogo%>');">
-            </div>
+                <img class="banner-img"  src="<%=imageForLogo%>" alt="">
         </div>
 
     </div>
