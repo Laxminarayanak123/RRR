@@ -15,7 +15,7 @@ module.exports.Suggest = async function(req,res){
    const content =req.body.content;
    const FeedBackType = req.body.FeedBackType
    const userType =req.body.userType
-   console.log(user,FeedBackType,userType);
+   // console.log(user,FeedBackType,userType);
    const feedback = await Developer.create({
       user:user,
       content:content,

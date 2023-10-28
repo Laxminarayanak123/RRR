@@ -10,11 +10,11 @@ async function verifyOtpUser(req, res, next) {
         const record = await otpVerify.find({user:email});
         // console.log(record[0].otp, 'the otp from records');
         if(record.length<=0){
-            console.log("in verify model this doesn't exists");
+            // console.log("in verify model this doesn't exists");
             return res.json({msg:'Error! Generate new code'});
         }
         else{
-            console.log("in verify model this exists");
+            // console.log("in verify model this exists");
             const {expiredAt} = record[0];
             const hashedOtp = record[0].otp;
 

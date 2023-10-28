@@ -67,21 +67,21 @@ class ratingClass {
                     if(self.rated == false){
                         let newAverage = self.averageMakerAndFormRemover(data);
                         self.prevAverageWrap.html(newAverage);
-                        console.log("2")
-                        console.log(self.rateAgainButton);
+                        // console.log("2")
+                        // console.log(self.rateAgainButton);
                         self.form.remove();
-                        console.log("3")
-                        console.log(self.rateAgainButton);
+                        // console.log("3")
+                        // console.log(self.rateAgainButton);
                         self.button.remove();
-                        console.log("4")
-                        console.log(self.rateAgainButton);
+                        // console.log("4")
+                        // console.log(self.rateAgainButton);
                         self.prevRatingWrap.remove();
                         self.addAverageRating(data)
-                        console.log("5")
+                        // console.log("5")
                     
-                        console.log(self.rateAgainButton);
-                        console.log("6")
-                        console.log(self.rateAgainButton);
+                        // console.log(self.rateAgainButton);
+                        // console.log("6")
+                        // console.log(self.rateAgainButton);
                         self.buttonHandler();
                         self.rated = true;
                     } 
@@ -97,12 +97,12 @@ class ratingClass {
 
     averageMakerAndFormRemover(data){
 
-        console.log("1");
+        // console.log("1");
 
 
         this.prevAverageContainer.remove();
 
-        console.log(this.rateAgainButton);
+        // console.log(this.rateAgainButton);
 
 
         return(`
@@ -139,21 +139,21 @@ class ratingClass {
 
     buttonHandler(){
         
-        console.log("7")
+        // console.log("7")
 
-        console.log(this.rateAgainButton);
+        // console.log(this.rateAgainButton);
 
-        console.log(this.rated);
+        // console.log(this.rated);
 
         if(this.rated == false){
-            console.log("triggered")
+            // console.log("triggered")
            
             this.rateAgainButton.attr('hidden',false);
         }else{
             this.rateAgainButton.attr('hidden',true);
         }
 
-        console.log(this.rateAgainButton);
+        // console.log(this.rateAgainButton);
 
     }
 

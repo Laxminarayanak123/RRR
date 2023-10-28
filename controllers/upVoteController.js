@@ -58,7 +58,7 @@ module.exports.upVoteController = async function(req,res){
      
 
     if(upvoteInfo == null){
-        console.log("ENTERED");
+        // console.log("ENTERED");
         let newUpVote = await upVote.create({
             votable: req.params.id,
             postORcomment : req.query.type,
@@ -67,7 +67,7 @@ module.exports.upVoteController = async function(req,res){
             UserOrHotel:UserOrHotel
         })
 
-        console.log(newUpVote);
+        // console.log(newUpVote);
 
         postORcom.upVotes.push(newUpVote.id);
  

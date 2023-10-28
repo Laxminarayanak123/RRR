@@ -7,8 +7,6 @@
         data.findIndex(upvote => {
 
             if(upvote.user== locals.user.id){
-
-                <!-- console.log("TRUE DATA",upvote.upVoted); -->
             
                 bools =  upvote.upVoted;
             }
@@ -36,7 +34,6 @@
                  var profilepic
                     if(comment.user.avatar){
                          profilepic =  comment.user.avatar;
-                         <!-- console.log(profilepic) -->
                     }
                     else{
                         profilepic = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"

@@ -31,7 +31,7 @@ class ToggleClass{
             data : {state,id},
 
             success: (data) => {
-                console.log(data);
+                // console.log(data);
             },
             error : (err) => {
                 console.log(err);

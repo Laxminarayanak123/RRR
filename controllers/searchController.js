@@ -5,7 +5,7 @@ const Hotel = require('../model/hotelModel');
 
 module.exports.SearchController = async function(req,res){
 
-    console.log(req.body.name);
+    // console.log(req.body.name);
 
     try{
 

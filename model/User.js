@@ -54,7 +54,7 @@ const userSchemma = new mongoose.Schema({
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(__dirname);
+        // console.log(__dirname);
       cb(null, path.join(__dirname,'..',profilePicturePath));
     },
     filename: function (req, file, cb) {
@@ -64,7 +64,7 @@ const storage = multer.diskStorage({
 
 const storageBackground = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(__dirname);
+        // console.log(__dirname);
       cb(null, path.join(__dirname,'..',coverPicPath));
     },
     filename: function (req, file, cb) {

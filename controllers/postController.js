@@ -32,7 +32,7 @@ module.exports.PostConroller = async function(req,res){
                 hotelName = req.body.hotel;
                 menuModel = req.body.menuItem;
             }
-            console.log("----------------------------------");
+            // console.log("----------------------------------");
             let presentPost = await Post.create({
                 user:req.user._id,
                 content:req.body.content,
@@ -102,7 +102,7 @@ module.exports.PostConroller = async function(req,res){
 
 module.exports.deletePost = async function(req,res,next){
 
-    console.log(req.params.uID,req.params.pID,req.query.type);
+    // console.log(req.params.uID,req.params.pID,req.query.type);
 
     let type = req.query.type;
 

@@ -5,11 +5,11 @@ class deleteComment{
     constructor(id){
 
         this.id = id;
-        console.log("commentID",this.id);
+        // console.log("commentID",this.id);
         this.deleteForm = $(`#commentDelete-${this.id}`);
         this.deleteComment();
         this.liWrap = $(`#commentArea-${this.id}`);
-        console.log(this.liWrap);
+        // console.log(this.liWrap);
         // console.log(this.id,"=====================",id)
 
     }
@@ -79,7 +79,7 @@ class deleteComment{
 
         if(data == true){
 
-            console.log("YES",this.liWrap);
+            // console.log("YES",this.liWrap);
             this.liWrap.remove();
         }
         

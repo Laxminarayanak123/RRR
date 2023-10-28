@@ -130,7 +130,7 @@ module.exports.GoogleSession =async function(req,res){
 
 //for deleting session cookie created by passport
 module.exports.destroySession = async function(req,res,next){
-    console.log(req.user);
+    // console.log(req.user);
     req.logout(async function(err) {
        
         if (err) { return next(err); }
@@ -160,7 +160,7 @@ module.exports.userProfile = async function(req,res){
     
 
     const userToVisit = req.params.uID;
-    console.log(userToVisit);
+    // console.log(userToVisit);
  
     let visitor = await User.findById(req.user.id);
 
@@ -266,7 +266,7 @@ module.exports.userProfile = async function(req,res){
     }
 
 
-    console.log(follow);
+    // console.log(follow);
 
     // populating user and hotels for footer
     const HotelData = await Hotel.find({}).populate();
@@ -363,7 +363,7 @@ module.exports.editProfile =async(req,res)=>{
                     fs.unlinkSync(oldProfilePath);
                 }
                 nonEmptyObject.avatar = Hotel.picPath+'/'+req.file.filename;
-                console.log(user);
+                // console.log(user);
             }
             if(req.body.district){
                 // check if already the hotel is in a district then modify it 
@@ -377,7 +377,7 @@ module.exports.editProfile =async(req,res)=>{
                 }
 
                 // new enrolling
-                console.log("in new enroll");
+                // console.log("in new enroll");
                 const district2 = await Districts.findById(req.body.district);
                 await district2.hotels.push(user.id);
                 await district2.save();
@@ -519,7 +519,7 @@ module.exports.coverPic =async(req,res)=>{
 
 module.exports.removeCoverPic = async(req,res)=>{
     const user =await Hotel.findById(req.user.id);
-    console.log(user);
+    // console.log(user);
     if(user.coverPic){
         const oldProfilePath = path.join(__dirname,'../uploads/hotelProfile/imagesForBack',user.coverPic);
         fs.unlinkSync(oldProfilePath);
@@ -538,7 +538,7 @@ module.exports.colors = async(req,res)=>{
     if(req.body.section){
         const hotel = await Hotel.findById(req.user.id);
         const section = req.body.section;
-        console.log(section,"-------------------",req.body.color);
+        // console.log(section,"-------------------",req.body.color);
 
         hotel.colors[section] = req.body.color;
 

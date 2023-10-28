@@ -88,7 +88,7 @@ class commentDOMClass {
 
     commentDOM(data){
 
-        console.log(data.picturePath,"from commentDOM");
+        // console.log(data.picturePath,"from commentDOM");
         return(`
                 <li id="commentArea-${data.commentID}" class="comments commentList">
 

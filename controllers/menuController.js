@@ -39,7 +39,7 @@ module.exports.getMenu = async function(req,res){
     let hotelMenu = await Hotel.findById(req.body.hotelID)
     .populate('menuArray');
 
-    console.log(hotelMenu.menuArray);
+    // console.log(hotelMenu.menuArray);
 
     return res.status(200).json({
         data:hotelMenu.menuArray

@@ -4,7 +4,7 @@ const path = require('path');
 const Menu = require('../model/menuModel');
 const User = require('../model/User');
 const Rating = require('../model/rating');
-
+const _ = require('lodash')
 
 module.exports.addRating = async(req,res)=>{
     try {
@@ -68,14 +68,15 @@ module.exports.addRating = async(req,res)=>{
                 if(menu.rating.length == 0){
                     menu.averageRating = newRating.rating;
                 }else{
-                    menu.averageRating = sum/total;
+                    var presentRatingValue = parseInt(req.body.ratingValue);
+                    menu.averageRating = (sum+presentRatingValue)/(total+1);
+                    // console.log(sum+presentRatingValue,total+1,(sum+presentRatingValue)/(total+1));
                 }
 
                 menu.rating.push(newRating.id);
             }
 
             menu.save();
-
             return res.status(200).json({
                 average:menu.averageRating.toFixed(1),
                 rating:rating

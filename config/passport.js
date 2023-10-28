@@ -132,14 +132,14 @@ passport.use('userGoogle',new GoogleStrategy({
                 
                 const filePath = path.join(downloadDirectory, imageName);
                 const fileStream = fs.createWriteStream(filePath);
-                console.log(downloadDirectory,filePath);
+                // console.log(downloadDirectory,filePath);
 
                 response.data.pipe(fileStream);
 
                 // Handle success
                 fileStream.on('finish', () => {
                   // res.status(200).send('Image downloaded successfully!');
-                  console.log('Image downloaded successfully!');
+                  // console.log('Image downloaded successfully!');
                 });
 
                 // Handle errors
@@ -246,7 +246,7 @@ passport.use('hotelGoogle',new GoogleStrategy({
 //encrypting user
 
 passport.serializeUser(function(user,done){
-    console.log("in serializer",user.id);
+    // console.log("in serializer",user.id);
     done(null,user.id);
 })
 //decrypting user
@@ -271,7 +271,7 @@ passport.checkAuthentication  = function(req,res,next){
         return next();
     }
     // req.session.shareUrl = `/share/${req.params.shareid}`;
-    console.log("inside check share");
+    // console.log("inside check share");
     return res.redirect('/user/signIn');
 }
 

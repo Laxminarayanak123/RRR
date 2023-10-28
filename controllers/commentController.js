@@ -7,7 +7,7 @@ const upVote = require("../model/upVote");
 module.exports.commentController = async function(req,res){
 
     const user_type = req.query.type;
-    console.log(user_type);
+    // console.log(user_type);
     if(user_type=="User"){
         var UserOrHotel = "User"
     }
@@ -110,7 +110,7 @@ module.exports.deleteComment = async function(req,res){
 
 
     if(req.xhr){
-        console.log("xhr");
+        // console.log("xhr");
 
         let commentData = await comment.findById(req.body.cID)
         .populate({

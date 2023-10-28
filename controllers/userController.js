@@ -31,7 +31,7 @@ module.exports.signIn = async function(req,res){
         return res.redirect('/');
     } 
 
-    console.log(req.query);
+    // console.log(req.query);
     return res.render("userSignIn",{
         title: "RRR ",
         message: await req.flash('message'),
@@ -89,7 +89,7 @@ module.exports.create = async function(req,res){
 
 //for creating session and signIN
 module.exports.createSession = async function(req,res){
-    console.log("came here");
+    // console.log("came here");
 
     // jwt token
     if(req.user.isAdmin){
@@ -106,7 +106,7 @@ module.exports.createSession = async function(req,res){
 
     // console.log(req.body.shareid,"--------------");
     if(req.body.shareid){
-        console.log("logged in --- after login ",req.body.shareid);
+        // console.log("logged in --- after login ",req.body.shareid);
 
         return res.redirect(`/share/${req.body.shareid}`)
     }
@@ -297,12 +297,12 @@ module.exports.editProfile =async(req,res)=>{
         }
         const user = await User.findById(req.user.id);
         let email = user.email
-        console.log(user);
+        // console.log(user);
         const nonEmptyValues = JSON.parse(JSON.stringify(req.body));
         const nonEmptyObject = {};
         
 
-        console.log("values",nonEmptyValues,req.file);
+        // console.log("values",nonEmptyValues,req.file);
         if(req.user.id == req.params.id){
 
              // if anyone try to change admin via body form
@@ -320,7 +320,7 @@ module.exports.editProfile =async(req,res)=>{
             if(req.file){
                 // removing previous file from folder
                 if(!user.avatar.startsWith('https://')){
-                    console.log('in the test');
+                    // console.log('in the test');
                     const oldProfilePath = path.join(__dirname,'../',user.avatar);
                     fs.unlinkSync(oldProfilePath);
                 }

@@ -38,7 +38,7 @@ class upVoteClass {
         }else{
             ajaxCall =  $(`#postUpVoteForm-${this.id}`);
         }
-        console.log(`#commentUpVoteForm-${this.id}`);
+        // console.log(`#commentUpVoteForm-${this.id}`);
         
         ajaxCall.on("submit",(e)=>{
 

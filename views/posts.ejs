@@ -179,7 +179,7 @@ else{
                                 shared their experience about
                                 <% if(post.menuModel != null){%>
 
-                                    <b class="highlighter">
+                                    <b class="highlighter" style="cursor: pointer;" onclick="location.href='/hotel/profile/<%=post.hotelName.id%>'">
                                         <%=post.menuModel.name%> 
                                     </b>
                                     
@@ -212,7 +212,6 @@ else{
                         
                         <script>
                             function adjustImageDimensions(img) {
-                                console.log(img.naturalHeight)
                                 if (img.naturalWidth > img.naturalHeight) {
                                     img.style.maxWidth = '100%';
                                     img.style.height = 'auto';

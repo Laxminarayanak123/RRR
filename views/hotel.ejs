@@ -91,7 +91,6 @@
 } else {
     var imageForBack1 = "/uploads/hotelProfile/imagesForBack/imageForBack.jpg";
 }
-<!-- console.log(imageForBack1) -->
  %>
  
 <div class="header1" style="background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)), url('<%= imageForBack1 %>'); background-size: cover; background-position: center;">
@@ -229,7 +228,6 @@
                             else{
                                 var fvalue = "unfollow";
                             }
-                            console.log(userToVisit,userId)
                                 if(userToVisit!=userId){ %>                
                                     <button class="banner-button" onclick="followHotel(value)" id="fbutton" value="<%=HotelProfile.id%>" class="btn btn-primary"><%= fvalue %></button>
                             <% }
@@ -257,7 +255,6 @@
         <% if (HotelProfile.avatar!="https://i.imgur.com/YMw6j9z.png") {
 
             var imageForLogo = "/uploads/hotelProfile/" + HotelProfile.avatar.split('/').pop();
-            console.log(imageForLogo)
         } else {
             var imageForLogo = "https://i.imgur.com/YMw6j9z.png";
         } %>
@@ -522,7 +519,6 @@ else{
                         <i class="fa fa-pause" style="color: green;"></i>
                     </button>
                 </div>
-                <%console.log(HotelProfile.menuArray.length,"dsdsdsdsdsdsdsds");%>
                 <% if(HotelProfile.menuArray.length==0){%>
                     <div style="text-align: center; position: relative; top: 200px;">
                         <h3>no items added yet!</h3>
@@ -687,7 +683,7 @@ else{
                 if(i>3){
                     break;
                 } %>
-        <div class="customer-card">
+        <div class="customer-card" style="cursor: pointer;" onclick="location.href='https://rrr.net.in/share/<%=item.id%>'">
             <div class="customer-image-wrapper">
                 <%
                     if(item.user.avatar){%>
@@ -936,9 +932,9 @@ function updateColor() {
 
         //var input = document.getElementById("colorInput");
         var colors = JSON.parse('<%- JSON.stringify(HotelProfile.colors) %>');
-        console.log(colors);
+        // console.log(colors);
         var index = select.value;
-        console.log(index)
+        // console.log(index)
         if (colors[index]) {
           // console.log(colors[index]);
           //input.value = colors[index];
